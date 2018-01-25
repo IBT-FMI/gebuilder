@@ -1,4 +1,3 @@
-#!/bin/env python3
 import portage.env.config as pec
 import sys
 

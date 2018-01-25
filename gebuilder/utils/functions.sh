@@ -85,7 +85,7 @@ function normalize_deps(){
 }
 
 function normalize_overlays(){
-	"${ROOT_DIR}/utils/normalize_overlays.py" "$@"
+	python "${ROOT_DIR}/utils/normalize_overlays.py" "$@"
 }
 
 function normalize_packagefiles(){
@@ -93,7 +93,7 @@ function normalize_packagefiles(){
 	shift
 	if [ -f "$1" ]
 	then
-		"${ROOT_DIR}/utils/normalize_packagefiles.py" "$type" "$@"
+		python "${ROOT_DIR}/utils/normalize_packagefiles.py" "$type" "$@"
 	fi
 }
 

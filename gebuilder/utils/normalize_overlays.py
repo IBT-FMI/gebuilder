@@ -1,4 +1,3 @@
-#!/bin/env python3
 import sys
 import collections
 from portage.util.configparser import (read_configs, SafeConfigParser)
