@@ -30,14 +30,14 @@ src_unpack() {
 }
 
 src_install() {
-	insinto /usr/share/buildserver
+	insinto /usr/share/gebuilder
 	doins -r utils config
-	cat >buildserver <<-EOF
+	cat >gebuild <<-EOF
 #!/bin/sh
 
-exec /usr/share/buildserver/exec.sh "\$@"
+exec /usr/share/gebuilder/exec.sh "\$@"
 EOF
-	dobin buildserver
+	dobin gebuild
 	insopts "-m0755"
 	doins -r exec.sh scripts
 }
