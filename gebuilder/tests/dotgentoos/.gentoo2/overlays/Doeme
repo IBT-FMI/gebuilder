@@ -1,0 +1,21 @@
+
+[chymeric]
+location = /usr/local/portage/chymeric
+sync-type = git
+sync-uri = https://github.com/TheChymera/overlay.git
+priority=9000
+
+
+	
+
+[Doeme]
+location = /usr/local/portage/doeme
+sync-type = git   	   
+sync-uri = https://github.com/Doeme/overlay.git
+#add some comments here
+	#It's over 9000!
+priority =   9001
+
+
+
+	

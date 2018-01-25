@@ -1,0 +1,15 @@
+[Doeme]
+location = /usr/local/portage/doeme
+	#the following line has trailing spaces and tabs
+sync-type = git   	   
+    sync-uri = https://github.com/Doeme/overlay.git
+ #add some comments here
+#It's over 9000!
+priority  =   9001
+
+[chymeric]
+location = /usr/local/portage/chymeric    
+sync-type = git	
+sync-uri = https://github.com/TheChymera/overlay.git
+priority=9000
+

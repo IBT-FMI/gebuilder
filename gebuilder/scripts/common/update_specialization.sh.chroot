@@ -1,0 +1,3 @@
+#!/bin/bash
+
+emerge --autounmask-continue=y --with-bdeps=y -uNDqov buildserver-specialization/specialization

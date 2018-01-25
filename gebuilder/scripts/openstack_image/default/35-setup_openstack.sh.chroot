@@ -1,0 +1,37 @@
+#!/bin/bash
+
+set -e
+
+debug "Emerging openstack packages $OPENSTACK_PKGS"
+emerge --autounmask-continue=y -j30 -qv $OPENSTACK_PKGS
+
+debug "Setting timezone to UTC"
+echo "UTC" > /etc/timezone
+cp /usr/share/zoneinfo/UTC /etc/localtime
+
+debug "Setting up net.eth0"
+rm -f /etc/init.d/net.e*
+rc-update add dhcpcd boot
+
+echo "hostname=\"gentoo\"" > /etc/conf.d/hostname
+
+
+debug "Setting up services"
+for s in sshd syslog-ng cloud-init
+do
+        rc-update add $s default
+done
+
+mv kernel.config /usr/src/linux/.config
+pushd /usr/src/linux/
+make olddefconfig
+make -j${NUM_CPU}
+make modules_prepare
+make modules_install
+make install
+popd
+
+pushd /boot/
+ln -s vmlinuz-* vmlinuz
+popd
+

@@ -1,0 +1,4 @@
+#!/bin/bash
+
+TMPROOT="${ROOT}"
+ROOT="${OPENSTACK_IMG_MNT}"

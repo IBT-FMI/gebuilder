@@ -1,0 +1,6 @@
+#!/bin/bash
+
+debug "Updating portage"
+emerge -uNqv portage
+debug "Updating system & world"
+emerge -uNDqv --with-bdeps=y @system @world

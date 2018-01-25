@@ -1,0 +1,1 @@
+../../common/copy_resolv.sh

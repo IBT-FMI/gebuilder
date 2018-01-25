@@ -1,0 +1,4 @@
+#!/bin/bash
+
+debug "Syncing portage tree"
+emaint sync -a
