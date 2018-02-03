@@ -10,7 +10,7 @@ SRC_URI=""
 LICENSE="GPLv3"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="autoupdate"
+IUSE="autoupdate btrfs"
 
 DEPEND="
 	sys-kernel/dracut
@@ -21,6 +21,7 @@ DEPEND="
 	net-misc/rsync
 "
 RDEPEND="${DEPEND}
+	btrfs? ( sys-fs/btrfs-progs )
 	autoupdate? ( virtual/cron )
 "
 
