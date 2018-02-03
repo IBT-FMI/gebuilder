@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set -e
+
+ROOT_DIR="/root/NeuroGentooProject/BuildServer/"
+
+pushd "${ROOT_DIR}"
+buildserver stemgentoo update
+for file in roots/*/.gentoo/
+do
+        buildserver "$file" update
+done
+popd
