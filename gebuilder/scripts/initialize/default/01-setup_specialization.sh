@@ -29,7 +29,11 @@ debug "Setting up the additional repos"
 ensure_dir "${ROOT}/etc/portage/repos.conf"
 for file in "${ROOT}/../.gentoo/overlays/"*
 do
-	if [ -f "$file" ]; then cp "$file" "${ROOT}/etc/portage/repos.conf/"; fi
+        echo "Attempting to copy ${file}."
+        if [ -f "$file" ];
+                then cp "$file" "${ROOT}/etc/portage/repos.conf/" &&
+                echo "Coiped!";
+        fi
 done
 
 cat >> ${ROOT}/etc/portage/repos.conf/buildserver-specialization.conf <<-EOF
