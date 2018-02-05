@@ -14,6 +14,7 @@ IUSE="autoupdate btrfs"
 
 DEPEND="
 	>=app-shells/bash-4.2
+	dev-python/python-glanceclient
 	net-misc/rsync
 	sys-apps/portage
 	sys-apps/util-linux
