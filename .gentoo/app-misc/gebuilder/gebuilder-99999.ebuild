@@ -13,12 +13,12 @@ KEYWORDS="~amd64 ~x86"
 IUSE="autoupdate btrfs"
 
 DEPEND="
-	sys-kernel/dracut
 	>=app-shells/bash-4.2
+	net-misc/rsync
+	sys-apps/portage
 	sys-apps/util-linux
 	sys-fs/duperemove
-	sys-apps/portage
-	net-misc/rsync
+	sys-kernel/dracut
 "
 RDEPEND="${DEPEND}
 	btrfs? ( sys-fs/btrfs-progs )
