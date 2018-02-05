@@ -17,6 +17,7 @@ DEPEND="
 	net-misc/rsync
 	sys-apps/portage
 	sys-apps/util-linux
+	sys-boot/syslinux
 	sys-fs/duperemove
 	sys-kernel/dracut
 "
