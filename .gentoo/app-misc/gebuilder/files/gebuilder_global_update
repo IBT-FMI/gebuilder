@@ -2,12 +2,12 @@
 
 set -e
 
-ROOT_DIR="/root/NeuroGentooProject/BuildServer/"
+ROOT_DIR="/root"
 
 pushd "${ROOT_DIR}"
-buildserver stemgentoo update
+gebuild stemgentoo update
 for file in roots/*/.gentoo/
 do
-        buildserver "$file" update
+	gebuild "$file" update
 done
 popd
