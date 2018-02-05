@@ -17,7 +17,9 @@ cd /home/youruser/gebuilder/.gentoo
 
 ## Known Issues
 
-During the initialization of any `.gentoo` directory, portage requires permission to the full path of a processed copy of the original ebuild.
+### Permission Error for Specialization Ebuilds
+
+During the initialization of any `.gentoo` directory, portage requires permission to the full path of a processed copy of the original ebuild (the so-called “specialization ebuild”).
 If the `gebuild` commands are run directly in the root home directory, portage will be lacking the required access rights (this happens even if the original `.gentoo` directory is in a portage readable path).
 Thus:
 
