@@ -2,7 +2,7 @@
 
 set -e
 
-ROOT_DIR="/root"
+ROOT_DIR="/usr/share/gebuilder"
 
 pushd "${ROOT_DIR}"
 gebuild stemgentoo update
