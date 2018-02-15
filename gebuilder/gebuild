@@ -1,4 +1,4 @@
 #!/bin/sh
 
 cd /usr/share/gebuilder
-exec /usr/share/gebuilder/exec.sh "\$@"
+exec /usr/share/gebuilder/exec.sh "$@"
