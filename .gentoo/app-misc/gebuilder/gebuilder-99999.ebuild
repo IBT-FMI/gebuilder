@@ -35,6 +35,7 @@ src_unpack() {
 src_install() {
 	insinto /usr/share/gebuilder
 	doins -r utils config
+	exeinto /usr/bin
 	doexe gebuild
 	insopts "-m0755"
 	doins -r exec.sh scripts
