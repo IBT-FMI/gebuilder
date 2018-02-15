@@ -29,7 +29,7 @@ RDEPEND="${DEPEND}
 
 src_unpack() {
 	mkdir "$S"
-	cp -r -L "$DOTGENTOO_PACKAGE_ROOT/gebuilder/"{exec.sh,config,doc,example_hooks,scripts,tests,utils,tests.sh} -t "$S"
+	cp -r -L "$DOTGENTOO_PACKAGE_ROOT/${PN}/"* -t "$S"
 }
 
 src_install() {
