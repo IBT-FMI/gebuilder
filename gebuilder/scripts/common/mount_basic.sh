@@ -6,8 +6,8 @@ do
 done
 
 pushd "${ROOT}"
-debug "bind-mount /dev to dev/"
-mount --bind /dev/ dev
+debug "recursively bind-mount /dev to dev/"
+mount --rbind /dev/ dev
 debug "mount proc/"
 mount -t proc none proc
 debug "mount sys/"
