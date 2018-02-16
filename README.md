@@ -39,3 +39,13 @@ chmod +x /root/
 ```
 
 This is a potential security liability, and should only be performed if you have no sensitive data under `/root/`.
+
+### Debugging a Failed Initialization
+
+Occasionally the initialization for a new `.gentoo` directory may fail (most commonly due to issues with the required ebuilds).
+By default, all traces of this attempted system (except the logs) are deleted - and this is by design, in order to prevent accumulation of cruft.
+If you wish to preserve the system, in order to chroot into it manually and try to diagnose or fix the issue in place, make sure the following line in `/usr/share/gebuilder/config/generic.confiig` is commented:
+
+```shell
+#DELETE_ON_FAIL=1
+```
