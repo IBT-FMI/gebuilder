@@ -15,17 +15,16 @@ debug "Writing bootloader, booting from UUID $OPENSTACK_IMG_UUID"
 cat <<-EOF > ${OPENSTACK_IMG_MNT}/boot/syslinux/syslinux.cfg
 DEFAULT gentoo
 LABEL gentoo
-      LINUX /boot/vmlinuz root=UUID=$OPENSTACK_IMG_UUID rootfstype=ext4 console=ttyS0,115200n8
+      LINUX /boot/vmlinuz root=UUID=$OPENSTACK_IMG_UUID rootfstype=$OPENSTACK_FILESYSTEM console=ttyS0,115200n8
       INITRD /boot/initramfs
 EOF
 
 debug "Writing fstab root-entry"
 cat <<-EOF >> ${OPENSTACK_IMG_MNT}/etc/fstab
-UUID=$UUID              /               ext4            noatime         0 1
+UUID=$UUID              /               $OPENSTACK_FILESYSTEM            noatime         0 1
 EOF
 
 INITRAMFS="${OPENSTACK_IMG_MNT}/boot/initramfs-$KERNELVERSION"
 debug "Generating initramfs $INITRAMFS"
 dracut --no-kernel -m "base rootfs-block" "$INITRAMFS" "$KERNELVERSION"
 ln -s "initramfs-$KERNELVERSION" "${OPENSTACK_IMG_MNT}/boot/initramfs"
-
