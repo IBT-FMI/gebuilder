@@ -19,10 +19,10 @@ cd /home/youruser/gebuilder/.gentoo
 
 ### Btrfs Support
 
-Systems which are intended to serve as builders (creating images via the capacities of gebuilder), will invariably contain large amounts of duplicated content.
-To efficiently handle this, running the said systems on [Btrfs](https://en.wikipedia.org/wiki/Btrfs) filesystems is recommended.
+Systems which are intended to serve as builders (creating images via the capacities of gebuilder), will invariably accummulate large amounts of duplicated content.
+To efficiently handle this, using a [Btrfs](https://en.wikipedia.org/wiki/Btrfs) filesystem is recommended.
 Gebuilder makes this particularly accessible, by optionally building Btrfs-formatted images out of the box.
-To select Btrfs as the format for e.g. an openstack image, run:
+To select Btrfs as the format for e.g. an OpenStack image, run:
 
 ```
 cp /usr/share/gebuilder/config/openstack.conf /usr/share/gebuilder/roots/<ID>/config/openstack.conf
@@ -47,7 +47,7 @@ And create it - as usually - with:
 gebuild <stemgentoo OR path to .gentoo> openstack_image
 ```
 
-Once the image is booted, note that it may be necessary to grow the Btrfs filesystem to fit the partition(the sizes may vary from provider to provider):
+Once the image is booted, note that it may be necessary to grow the Btrfs filesystem to fit the partition (the sizes may vary from provider to provider):
 
 ```
 builder ~ # df -h
