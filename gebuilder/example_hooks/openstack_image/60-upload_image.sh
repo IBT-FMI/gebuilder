@@ -21,6 +21,7 @@ then
 else
 	ensure_dir "${ROOT}/../registry/"
 fi
+# Calling `cleanup` here patches https://github.com/IBT-FMI/gebuilder/issues/11
 cleanup
 debug "Uploading new image with name $OS_IMGNAME"
 gl image-create --disk-format raw --container-format bare --name "$OS_IMGNAME" --file "$OPENSTACK_IMAGE" >"${ROOT}/../registry/openstack_image"
