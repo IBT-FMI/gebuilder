@@ -40,4 +40,10 @@ src_install() {
 	doexe gebuild
 	insopts "-m0755"
 	doins -r exec.sh scripts
+	
+	if use autoupdate; then
+		einfo "Installing weekly cron job:"
+		insinto /etc/cron.weekly
+		doins ${FILESDIR}/gebuilder_global_update
+	fi
 }
