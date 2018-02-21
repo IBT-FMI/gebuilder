@@ -10,7 +10,7 @@ SRC_URI=""
 LICENSE="GPLv3"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="autoupdate btrfs"
+IUSE="autoupdate btrfs docker"
 
 DEPEND="
 	>=app-shells/bash-4.2
@@ -23,6 +23,7 @@ DEPEND="
 	sys-kernel/dracut
 "
 RDEPEND="${DEPEND}
+	docker? ( app-emulation/docker )
 	btrfs? ( sys-fs/btrfs-progs )
 	autoupdate? ( virtual/cron )
 "

@@ -14,6 +14,7 @@
 		<flag name="autoupdate">Configures the system to auto-update existing images.</flag>
 		<flag name="btrfs">Enable support for btrfs filesystem formatting 
 			(saves space for many images).</flag>
+		<flag name="Docker">Ensure prerequisites for Docker scripts are met.</flag>
 	</use>
 	<upstream>
 		<remote-id type="github">IBT-FMI/gebuilder</remote-id>
