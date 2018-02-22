@@ -23,6 +23,7 @@ function ok(){
 declare -a _on_exit;
 declare -a _on_exit_savestack;
 declare -a _on_error;
+declare -a _on_error_savestack;
 
 
 export -f debug error
@@ -155,8 +156,11 @@ function exec_script_files(){
 			continue;
 		fi
 		debug "Executing ${script#$ROOT_DIR/scripts/}"
-		ensure_dir "${LOG_DIR}/"
-		stdin_stderr_redirect "${LOG_DIR}/${script##*/}.log"
+		if [[ "${script}" != *".nolog"* ]]
+		then
+			ensure_dir "${LOG_DIR}/"
+			stdin_stderr_redirect "${LOG_DIR}/${script##*/}.log"
+		fi
 		if [ "${script##*\.}" == "chroot" ]
 		then
 			export -n ROOT
@@ -169,7 +173,10 @@ function exec_script_files(){
 			export ROOT
 			. "$script"
 		fi
-		stdin_stderr_restore
+		if [[ "${script}" != *".nolog"* ]]
+		then
+			stdin_stderr_restore
+		fi
 	done
 
 }
