@@ -21,10 +21,27 @@ function ok(){
 }
 
 declare -a _on_exit;
+declare -a _on_exit_savestack;
 declare -a _on_error;
 
 
 export -f debug error
+
+function on_exit_save(){
+	_on_exit_savestack=( ${#_on_exit[@]} "${_on_exit_savestack[@]}" )
+}
+
+function on_exit_restore(){
+	local i=${_on_exit_savestack[0]}
+	local j=$(( ${#_on_exit[@]}-i ))
+	_on_exit_savestack=( "${on_exit_savestack[@]:1}" )
+	for func in "${_on_exit[@]:0:j}"
+	do
+		debug "executing $func"
+		eval "$func"
+	done
+	_on_exit=( "${_on_exit[@]:j}" )
+}
 
 function on_exit(){
 	_on_exit=( "$1" "${_on_exit[@]}" )
