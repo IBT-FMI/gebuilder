@@ -36,7 +36,7 @@ do
         fi
 done
 
-cat >> ${ROOT}/etc/portage/repos.conf/buildserver-specialization.conf <<-EOF
+cat > ${ROOT}/etc/portage/repos.conf/buildserver-specialization.conf <<-EOF
 [buildserver-specialization]
 masters = gentoo
 location = /var/buildsrv/overlay
