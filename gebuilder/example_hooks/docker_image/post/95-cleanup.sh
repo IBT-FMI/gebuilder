@@ -18,10 +18,12 @@ find '/var/lib/docker/volumes/' -mindepth 1 -maxdepth 1 -type d | grep -vFf <(
   docker ps -aq | xargs docker inspect | jq -r '.[] | .Mounts | .[] | .Name | select(.)'
   ) | xargs -r rm -fr
 
+# This may require rebooting (and also re-running the script after that)
+# Inspired from:
+# https://github.com/moby/moby/issues/6325#issuecomment-214342903
 kill -9 $(lsof -t -c docker)
 /etc/init.d/docker stop
 rm -rf /vat/lib/docker/*
 dockerd --storage-opt dm.basesize=20G && disown
 kill -9 $(lsof -t -c docker)
 /etc/init.d/docker start
-
