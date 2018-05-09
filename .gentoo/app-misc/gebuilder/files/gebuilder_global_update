@@ -8,6 +8,6 @@ pushd "${ROOT_DIR}"
 gebuild stemgentoo update
 for file in roots/*/.gentoo/
 do
-	gebuild "$file" update
+	gebuild "$file" update || true
 done
 popd
