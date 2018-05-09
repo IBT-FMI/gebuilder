@@ -6,7 +6,7 @@ ROOT_DIR="$(realpath "$(dirname "$0")")"
 #Where do we cache certain files?
 CACHE="${ROOT_DIR}/cache/"
 
-export NUM_CPU="$(grep -c processor /proc/cpuinfo)"
+export NUM_CPU="$(getconf _NPROCESSORS_ONLN)"
 
 function debug(){
 	echo "$@">&2
