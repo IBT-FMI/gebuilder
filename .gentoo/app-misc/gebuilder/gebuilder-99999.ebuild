@@ -23,6 +23,7 @@ DEPEND="
 	sys-kernel/dracut
 "
 RDEPEND="${DEPEND}
+	sys-process/lsof
 	docker? ( app-emulation/docker )
 	btrfs? ( sys-fs/btrfs-progs )
 	autoupdate? ( virtual/cron )
