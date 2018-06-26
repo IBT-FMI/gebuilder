@@ -78,6 +78,10 @@ builder ~ # btrfs filesystem resize +92G /
 
 ## Known Issues
 
+The following list contains soltions to issues commonly encountered with gebuilder, as well as with the services it depends on.
+Particularly Docker seems to cause a number of issues.
+For convenience we keep a list of issues and their solutions here, though this section may more appropriately moved elsewhere in the future.
+
 ### Debugging a Failed Initialization
 
 Occasionally the initialization for a new `.gentoo` directory may fail (most commonly due to issues with the required ebuilds).
@@ -105,4 +109,20 @@ rc-update add /etc/init.d/docker default
 ```
 systemctl docker start
 systemctl docker enable
+```
+
+chpasswd: Cannot determine your user name.
+
+### Issues connecting to Docker
+
+A number of legacy login styles explicitly specifying the service may fail, e.g.:
+
+```
+docker login hub.docker.com
+```
+
+Currently, Dockerhub login is best performed with the Dockerhub address handled implicitly:
+
+```
+docker login
 ```
