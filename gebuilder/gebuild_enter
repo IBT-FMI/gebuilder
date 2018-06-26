@@ -1,0 +1,15 @@
+mount --rbind /dev ${1}/dev
+mount --make-rslave ${1}/dev
+mount -t proc /proc ${1}/proc
+mount --rbind /sys ${1}/sys
+mount --make-rslave ${1}/sys
+mount --rbind /tmp ${1}/tmp
+
+cat > ${1}/shell.sh << EOF
+source /etc/profile
+env-update
+/bin/bash
+export PS1="(chroot) $PS1"
+EOF
+
+chroot ${1}/ /bin/bash /shell.sh
