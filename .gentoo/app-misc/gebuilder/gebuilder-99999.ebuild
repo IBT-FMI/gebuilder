@@ -39,7 +39,7 @@ src_install() {
 	exeinto /usr/bin
 	doexe gebuild
 	insopts "-m0755"
-	doins -r exec.sh scripts
+	doins -r example_hooks exec.sh scripts
 	
 	if use autoupdate; then
 		einfo "Installing weekly cron job:"
