@@ -87,3 +87,22 @@ If you wish to preserve the system, in order to chroot into it manually and try 
 ```shell
 #DELETE_ON_FAIL=1
 ```
+
+### Docker images not being built
+
+Depending on your system set-up, even after installing docker, the daemon may not yet be started.
+The daemon will have to be enabled depending on your service manager.
+
+#### On OpenRC run:
+
+```
+/etc/init.d/docker enable
+rc-update add /etc/init.d/docker default
+```
+
+#### On systemd run:
+
+```
+systemctl docker start
+systemctl docker enable
+```
