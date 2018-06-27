@@ -24,7 +24,7 @@ DEPEND="
 "
 RDEPEND="${DEPEND}
 	sys-process/lsof
-	docker? ( app-emulation/docker )
+	docker? ( >=app-emulation/docker-18.05.0 )
 	btrfs? ( sys-fs/btrfs-progs )
 	autoupdate? ( virtual/cron )
 "
