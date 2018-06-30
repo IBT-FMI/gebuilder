@@ -1,4 +1,0 @@
-umount -f ${1}/dev > /dev/null &
-umount -f ${1}/proc > /dev/null &
-umount -f ${1}/sys > /dev/null &
-umount -f ${1}/tmp > /dev/null 
