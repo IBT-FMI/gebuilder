@@ -78,7 +78,7 @@ builder ~ # btrfs filesystem resize +92G /
 
 ## Known Issues
 
-The following list contains soltions to issues commonly encountered with gebuilder, as well as with the services it depends on.
+The following list contains solutions to issues commonly encountered with gebuilder, as well as with the services it depends on.
 Particularly Docker seems to cause a number of issues.
 For convenience we keep a list of issues and their solutions here, though this section may more appropriately moved elsewhere in the future.
 
