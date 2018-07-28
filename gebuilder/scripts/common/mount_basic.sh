@@ -16,7 +16,7 @@ debug "mount devpts with gid=5 for glibc[-suid] at /dev/pts/"
 mount -t devpts -o gid=5 none dev/pts/
 debug "mount tmpfd on /var/tmp/portage"
 mkdir -p var/tmp/portage
-mount -t tmpfs -o size=6G none var/tmp/portage
+mount -t tmpfs -o size=16G none var/tmp/portage
 debug "mounting tmpfs on /tmp/"
 mount -t tmpfs -o size=1G none tmp
 popd
