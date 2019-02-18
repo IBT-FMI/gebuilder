@@ -72,7 +72,7 @@ Device     Boot Start       End   Sectors  Size Id Type
 If there is a difference between the disk and the volume, add it to the btrfs filesystem:
 
 ```
-builder ~ # emerge btrfs-pogs
+builder ~ # emerge btrfs-progs
 builder ~ # btrfs filesystem resize +92G /
 ```
 
