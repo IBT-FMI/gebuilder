@@ -1,6 +1,7 @@
 # GeBuilder
 
 GeBuilder is a Gentoo system and image builder which can produce system tarballs, OpenStack Images, and Docker containers based on the `.gentoo` live package distribution standard.
+A more extensive description of the background for this project and the `.gentoo` specification is laid out in the summary of the [semester project during which this project was initially launched](http://chymera.eu/docs/dominik_semesterarbeit.pdf).
 
 ## Installation
 
@@ -72,13 +73,13 @@ Device     Boot Start       End   Sectors  Size Id Type
 If there is a difference between the disk and the volume, add it to the btrfs filesystem:
 
 ```
-builder ~ # emerge btrfs-pogs
+builder ~ # emerge btrfs-progs
 builder ~ # btrfs filesystem resize +92G /
 ```
 
 ## Known Issues
 
-The following list contains soltions to issues commonly encountered with gebuilder, as well as with the services it depends on.
+The following list contains solutions to issues commonly encountered with gebuilder, as well as with the services it depends on.
 Particularly Docker seems to cause a number of issues.
 For convenience we keep a list of issues and their solutions here, though this section may more appropriately moved elsewhere in the future.
 
