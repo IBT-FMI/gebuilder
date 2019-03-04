@@ -11,7 +11,7 @@ elif type == "use":
 elif type == "keywords":
 	type=pec.PackageKeywordsFile
 elif type == "unmask":
-	type=pecPackageMaskFile
+	type=pec.PackageMaskFile
 
 
 for file in sys.argv[2:]:
