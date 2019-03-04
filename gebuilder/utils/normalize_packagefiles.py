@@ -10,8 +10,6 @@ elif type == "use":
 	type=pec.PackageUseFile
 elif type == "accept_keywords":
 	type=pec.PackageKeywordsFile
-elif type == "keywords":
-	type=pec.PackageKeywordsFile
 elif type == "unmask":
 	type=pec.PackageMaskFile
 
