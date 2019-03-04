@@ -42,7 +42,7 @@ masters = gentoo
 location = /var/buildsrv/overlay
 EOF
 
-for dir in package.{use,mask,unmask,keywords}
+for dir in package.{accept_keywords,keywords,mask,unmask,use}
 do
 	file="${ROOT}/../.gentoo/${dir}"
         if [ -f "$file" ]
