@@ -1,4 +1,11 @@
 #!/bin/sh
 
+if [[ $UID -ne 0 && -z "${GEBUILD_NONROOT+x}" ]]
+then
+	echo "Sorry, gebuild needs to be executed by root to work properly.">&2
+	echo "You can override this by setting GEBUILD_NONROOT=1">&2
+	exit 1
+fi
+
 cd /usr/share/gebuilder
 exec /usr/share/gebuilder/exec.sh "$@"
