@@ -12,7 +12,8 @@ elif type == "accept_keywords":
 	type=pec.PackageKeywordsFile
 elif type == "unmask":
 	type=pec.PackageMaskFile
-
+else:
+	raise Exception("Filetype {} unknown".format(type))
 
 for file in sys.argv[2:]:
 	pf=type(file)
