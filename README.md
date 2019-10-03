@@ -70,11 +70,11 @@ Device     Boot Start       End   Sectors  Size Id Type
 /dev/vda1  *     2048 209715166 209713119  100G 83 Linux
 ```
 
-If there is a difference between the disk and the volume, add it to the btrfs filesystem:
+To resize the filesystem to use the whole partition you can type: 
 
 ```
 builder ~ # emerge btrfs-progs
-builder ~ # btrfs filesystem resize +92G /
+builder ~ # btrfs filesystem resize max /
 ```
 
 ## Known Issues
