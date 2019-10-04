@@ -129,7 +129,7 @@ function normalize_dotgentoo(){
 	echo "#overlays"
 	olays=( "$1"/overlays/* )
 	[ -f "${olays[0]}" ] && normalize_overlays ${olays[@]}
-	for pkgfile in keywords mask unmask use
+	for pkgfile in accept_keywords mask unmask use
 	do
 		echo "#$pkgfile"
 		normalize_packagefiles "$pkgfile" "$1/package.$pkgfile"/*
