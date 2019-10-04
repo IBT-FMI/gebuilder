@@ -1,10 +1,10 @@
 #!/bin/bash
 
 #Where are all our scripts and stuff?
-ROOT_DIR="$(realpath "$(dirname "$0")")"
+GEBUILDER_ROOT="$(realpath "$(dirname "$0")")"
 
 #Where do we cache certain files?
-CACHE="${ROOT_DIR}/cache/"
+CACHE="${GEBUILDER_ROOT}/cache/"
 
 export NUM_CPU="$(getconf _NPROCESSORS_ONLN)"
 
@@ -103,7 +103,7 @@ function normalize_deps(){
 }
 
 function normalize_overlays(){
-	python "${ROOT_DIR}/utils/normalize_overlays.py" "$@"
+	python "${GEBUILDER_ROOT}/utils/normalize_overlays.py" "$@"
 }
 
 function normalize_packagefiles(){
@@ -111,7 +111,7 @@ function normalize_packagefiles(){
 	shift
 	if [ -f "$1" ]
 	then
-		python "${ROOT_DIR}/utils/normalize_packagefiles.py" "$type" "$@"
+		python "${GEBUILDER_ROOT}/utils/normalize_packagefiles.py" "$type" "$@"
 	fi
 }
 
@@ -155,7 +155,7 @@ function exec_script_files(){
 		then
 			continue;
 		fi
-		debug "Executing ${script#$ROOT_DIR/scripts/}"
+		debug "Executing ${script#$GEBUILDER_ROOT/scripts/}"
 		if [[ "${script}" != *".nolog"* ]]
 		then
 			ensure_dir "${LOG_DIR}/"
@@ -195,11 +195,11 @@ function exec_scripts(){
 	STAGE="$1"
 	MACHINE="$2"
 	MACHINETYPE="${3:-default}"
-	ROOT="$PWD/roots/$MACHINE/root"
+	ROOT="/var/lib/gebuilder/roots/$MACHINE/root"
 	export STAGE MACHINE MACHINETYPE ROOT
 
 	debug "Loading global configuration"
-	load_config "${ROOT_DIR}/config/"
+	load_config "${GEBUILDER_ROOT}/config/"
 	debug "Loading configuration of machine $MACHINE"
 	load_config "${ROOT}/../config/"
 	debug "Executing $STAGE scripts for machine $MACHINE of type $MACHINETYPE"
@@ -210,7 +210,7 @@ function exec_scripts(){
 	then
 		exec_script_files "${PREDIR}/"*
 	fi
-	exec_script_files "$ROOT_DIR/scripts/$STAGE/$MACHINETYPE/"*
+	exec_script_files "$GEBUILDER_ROOT/scripts/$STAGE/$MACHINETYPE/"*
 	if [ -d "$POSTDIR" ]
 	then
 		exec_script_files "${POSTDIR}/"*

@@ -13,15 +13,15 @@ fi
 
 if [ "$2" == "initialize" -a "$MACHINETYPE" != "stemgentoo" ]
 then
-	ensure_dir "roots/$ID"
-	cp -r "$1" "roots/$ID/.gentoo"
+	ensure_dir "/var/lib/gebuilder/roots/$ID"
+	cp -r "$1" "/var/lib/gebuilder/"
 fi
 
 exec_scripts "$2" "$ID" "$MACHINETYPE"
 ok "Finished succesfully"
 trap - ERR
 cleanup
-CHAINFILE="roots/$ID/hooks/$2/chain"
+CHAINFILE="/var/lib/gebuilder/roots/$ID/hooks/$2/chain"
 echo "$CHAINFILE"
 if [ -f "${CHAINFILE}" ]
 then

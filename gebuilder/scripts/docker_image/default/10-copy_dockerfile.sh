@@ -1,3 +1,3 @@
 #!/bin/bash
 
-cp "${ROOT_DIR}/utils/Dockerfile" "${ROOT}/../"
+cp "${GEBUILDER_ROOT}/utils/Dockerfile" "${ROOT}/../"

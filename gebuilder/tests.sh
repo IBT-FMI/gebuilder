@@ -4,7 +4,7 @@ source "$(dirname "$0")/utils/functions.sh"
 
 declare TEST
 
-for TEST in "${ROOT_DIR}/tests/"*.sh
+for TEST in "${GEBUILDER_ROOT}/tests/"*.sh
 do
 	if [ ! -x "$TEST" ]
 	then
