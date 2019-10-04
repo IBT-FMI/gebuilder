@@ -21,6 +21,8 @@ fi
 
 declare TEST
 
+exitcode=0
+
 for TEST in "${GEBUILDER_ROOT}/tests/"*.sh
 do
 	if [ ! -x "$TEST" ]
@@ -34,6 +36,7 @@ do
 		ok "$TEST ok"
 	else
 		error "$TEST failed"
+		exitcode=1
 	fi
 done
 
@@ -42,4 +45,5 @@ do
 	echo "$line"
 done
 
-clean_exit
+cleanup
+exit $exitcode
