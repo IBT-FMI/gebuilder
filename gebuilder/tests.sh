@@ -41,3 +41,5 @@ for line in "${msgs[@]}"
 do
 	echo "$line"
 done
+
+clean_exit
