@@ -1,6 +1,7 @@
 #!/bin/bash
 
 tmpdir="$(mktemp -d)"
+on_exit "rm -rf \"${tmpdir}\""
 pushd "${tmpdir}"
 "$GEBUILDER_ENTRY" stemgentoo initialize
 if [ "$?" -eq 0 ]
