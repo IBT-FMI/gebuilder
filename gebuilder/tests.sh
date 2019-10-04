@@ -1,6 +1,12 @@
 #!/bin/bash
 
 source "$(dirname "$0")/utils/functions.sh"
+trap - ERR
+
+if [ -z "${GEBUILDER_ENTRY+x}" ]
+then
+	GEBUILDER_ENTRY="${PWD}/exec.sh"
+fi
 
 declare TEST
 
