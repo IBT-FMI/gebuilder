@@ -129,7 +129,7 @@ function normalize_dotgentoo(){
 	echo "#overlays"
 	olays=( "$1"/overlays/* )
 	[ -f "${olays[0]}" ] && normalize_overlays ${olays[@]}
-	for pkgfile in keywords mask unmask use
+	for pkgfile in accept_keywords mask unmask use
 	do
 		echo "#$pkgfile"
 		normalize_packagefiles "$pkgfile" "$1/package.$pkgfile"/*
@@ -195,7 +195,7 @@ function exec_scripts(){
 	STAGE="$1"
 	MACHINE="$2"
 	MACHINETYPE="${3:-default}"
-	ROOT="/var/lib/gebuilder/roots/$MACHINE/root"
+	ROOT="$PWD/roots/$MACHINE/root"
 	export STAGE MACHINE MACHINETYPE ROOT
 
 	debug "Loading global configuration"
