@@ -195,7 +195,7 @@ function exec_scripts(){
 	STAGE="$1"
 	MACHINE="$2"
 	MACHINETYPE="${3:-default}"
-	ROOT="/var/lib/gebuilder/roots/$MACHINE/root"
+	ROOT="$PWD/roots/$MACHINE/root"
 	export STAGE MACHINE MACHINETYPE ROOT
 
 	debug "Loading global configuration"
