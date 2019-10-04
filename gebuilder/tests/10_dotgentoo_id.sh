@@ -1,8 +1,8 @@
 #!/bin/bash
 
-ID1="$(get_dotgentoo_id "${ROOT_DIR}/tests/dotgentoos/.gentoo1")"
-ID2="$(get_dotgentoo_id "${ROOT_DIR}/tests/dotgentoos/.gentoo2")"
-ID3="$(get_dotgentoo_id "${ROOT_DIR}/tests/dotgentoos/.gentoo3")"
+ID1="$(get_dotgentoo_id "${GEBUILDER_ROOT}/tests/dotgentoos/.gentoo1")"
+ID2="$(get_dotgentoo_id "${GEBUILDER_ROOT}/tests/dotgentoos/.gentoo2")"
+ID3="$(get_dotgentoo_id "${GEBUILDER_ROOT}/tests/dotgentoos/.gentoo3")"
 
 if [ "$ID1" != "$ID2" ]
 then
