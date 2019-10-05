@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ ! -f  "roots/stemgentoo/root/" ]; then 
+if [ ! -d  "roots/stemgentoo/root/" ]; then
        error "Stemgentoo was not initialized"
        error exit
 fi
