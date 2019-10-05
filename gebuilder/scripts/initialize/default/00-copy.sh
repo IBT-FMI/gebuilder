@@ -1,10 +1,10 @@
 #!/bin/bash
 
-if [ ! -f  "/var/lib/gebuilder/roots/stemgentoo/root/" ]; then 
-       error "Stemgen was not initialized"
+if [ ! -f  "roots/stemgentoo/root/" ]; then 
+       error "Stemgentoo was not initialized"
        error exit
 fi
 
 if [[ -v DELETE_ON_FAIL ]]; then on_error "rm --one-file-system -r '${ROOT}'"; fi
 
-rsync -a /var/lib/gebuilder/roots/stemgentoo/root/ "${ROOT}"
+rsync -a roots/stemgentoo/root/ "${ROOT}"
