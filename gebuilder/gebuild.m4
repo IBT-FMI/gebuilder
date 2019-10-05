@@ -7,5 +7,6 @@ then
 	exit 1
 fi
 
-cd /var/lib/gebuilder/
-exec /usr/share/gebuilder/exec.sh "$@"
+cd "IMAGESDIR"
+export CACHE="CACHEDIR"
+exec "GEBUILDER_ROOT/exec.sh" "$@"
