@@ -23,7 +23,7 @@ EOF
 echo buildserver-specialization >> "${OVERLAYDIR}/profiles/categories"
 echo buildserver-specialization >> "${OVERLAYDIR}/profiles/repo_name"
 cp "${EBUILD}" "${OVERLAYDIR}/buildserver-specialization/specialization/specialization-9999.ebuild"
-ebuild "${OVERLAYDIR}/buildserver-specialization/specialization/specialization-9999.ebuild" manifest
+PORTAGE_USERNAME=root PORTAGE_GRPNAME=root ebuild "${OVERLAYDIR}/buildserver-specialization/specialization/specialization-9999.ebuild" manifest
 
 debug "Setting up the additional repos"
 ensure_dir "${ROOT}/etc/portage/repos.conf"
