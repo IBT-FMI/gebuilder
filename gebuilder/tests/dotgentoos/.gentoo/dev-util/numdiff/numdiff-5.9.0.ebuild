@@ -7,7 +7,7 @@ inherit autotools
 
 DESCRIPTION="File comparision, ignoring small numeric differences and formats"
 HOMEPAGE="http://www.nongnu.org/numdiff/"
-SRC_URI="http://savannah.nongnu.org/download/numdiff/${P}.tar.gz"
+SRC_URI="http://savannah.nongnu.org/download/numdiff/numdiff-5.9.0.tar.gz"
 
 LICENSE="GPL-3+"
 SLOT="0"
