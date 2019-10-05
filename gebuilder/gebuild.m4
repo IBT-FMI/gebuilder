@@ -7,5 +7,5 @@ then
 	exit 1
 fi
 
-cd /usr/share/gebuilder
-exec /usr/share/gebuilder/exec.sh "$@"
+cd PREFIX/gebuilder
+exec ./exec.sh "$@"
