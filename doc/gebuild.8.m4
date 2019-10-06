@@ -1,16 +1,19 @@
 .TH GEBUILD 8
+.
 .SH NAME
 gebuild \- generates software environments based on an ebuild specification
+.
 .SH SYNOPSIS
 .B gebuild
 .IR /path/to/.gentoo | stemgentoo
 .I command
+.
 .SH DESCRIPTION
 .B gebuild
 is a Gentoo system and image builder which can produce system tarballs, OpenStack Images, and Docker containers based on the .gentoo live package distribution standard.
-
+.
 .SH OPTIONS
-
+.
 .TP
 .I /path/to/.gentoo|stemgentoo
 Either a path to a .gentoo directory, or the literal stemgentoo, where the latter
