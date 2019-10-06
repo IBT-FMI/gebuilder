@@ -47,4 +47,6 @@ src_install() {
 		insinto /etc/cron.weekly
 		doins ${FILESDIR}/gebuilder_global_update
 	fi
+
+	doman doc/{gebuild.8,dotgentoo.5}
 }

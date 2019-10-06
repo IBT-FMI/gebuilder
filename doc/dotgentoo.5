@@ -1,0 +1,102 @@
+.TH DOTGENTOO 5
+.SH NAME
+ .gentoo - a standard on how to bundle installation instructions and dependency information inside a project
+.SH DESCRIPTION
+The .gentoo\-directory is a new approach of distributing a Gentoo Ebuild (see the Package Manager Specification PMS (https://dev.gentoo.org/~ulm/pms/head/pms.html)) \- together with the software.
+.SS
+Motivation
+.PP
+Usually, Ebuilds are distributed in large sets, via overlays.
+While this approach is reasonable for most cases, as it enforces some structure on the distribution of Ebuilds (usually combined with quality control), there are edge\-cases where this approach does not fit well.
+Namely, when distributing the Ebuild alongside the software.
+The canonical approach to add a single Ebuild to the set of known packages is be to create a new directory, copy the Ebuild to the directory, and integrate the directory into the Gentoo system (as an overlay), by manually editing at least one system configuration file.
+.PP
+Whilst being unnecessarily arduous, it also does not address that a developer might want to install not only the newest publically available version of the software, but the developers local version with not yet published changes.
+A more convenient model would distribute the Ebuild with the software \f[I]and\f[] provide a way to install it with a single command, based on the current state of the projects working directory (including non\-commited changes).
+Since not all information needed to install the software is contained inside the Ebuild, it is necessary to:
+.IP \[bu] 2
+specify additional overlays needed to resolve additional Ebuild dependencies which are not included in the main portage tree (but rather in e.g. the Science Overlay, as FSL or AFNI are)
+.IP \[bu] 2
+specify package masks, keywords, USE flags and unmasks required for the Ebuild
+.PP
+This metadata, though contained, should not be added automatically to a users Gentoo Linux, since it has a large effect on the rest of the system.
+Hence, the metadata handling in particular should not be done without the users explicit consent or without user interaction.
+Installation of the package and setting up the temporary overlay however may be safely done automatically.
+.SS
+Layout
+.PP
+The .gentoo format is a simple directory containing:
+.IP \[bu] 2
+A 99999\-Ebuild in a valid portage tree structure as defined in the Package Manager Standard, i.e. \f[C].gentoo/category\-name/pkgname/pkgname\-99999.ebuild\f[]
+.IP \[bu] 2
+\f[C]package.mask/\f[] \f[C]package.keywords/\f[] \f[C]package.use/\f[] and \f[C]package.unmask/\f[]
+.IP \[bu] 2
+\f[C]overlays/\f[], which contains additionally required overlays in the same format as \f[C]/etc/portage/repos.conf/\f[]
+.SS
+\&.gentoo ID
+.PP
+The .gentoo IDs are meant to uniquely identify the .gentoo directory based on semantic (rather than syntactical) differences.
+.PP
+Hence, it is generated as the sha512\-sum of the following UTF8 byte stream:
+.IP "1." 4
+\f[C]#Ebuild\en\f[]
+.IP "2." 4
+The content of the 99999\-Ebuild inside the .gentoo directory
+.IP "3." 4
+\f[C]#overlays\en\f[]
+.IP "4." 4
+The \f[I]normalized\f[] content of all overlays in the \f[C]overlays/\f[] directory.
+Normalized means that comments are removed, the options get sorted
+in lexical order and are formatted according to the following model:
+.IP
+.nf
+\f[C]
+[overlayname]\en
+key1 = value1\en
+key2 = value2\en
+\&...
+[overlay2name]\en
+key1 = value1\en
+key2 = value2\en
+\&...
+\f[]
+.fi
+.IP "5." 4
+The normalized package.* files in order:
+.IP "1." 4
+keywords
+.IP "2." 4
+mask
+.IP "3." 4
+unmask
+.IP "4." 4
+use
+.PP
+Prepended with \f[C]#keywords\en\f[], \f[C]#mask\en\f[] etc. (even if they are empty or non\-existent).
+.PP
+Normalized, in the present context, refers to the comments being removed and the entries listed in lexical order.
+.PP
+This yields an ID which is reasonably robust to changes outside the Ebuild.
+However, any slight (even syntactical) change to the Ebuild will affect the ID drastically.
+This is a design choice as much as it is a design limitation, since the flexibility which has to be guaranteed in an Ebuild cannot be reconciled with standardized semantic parsing.
+.SS
+The install.sh Script
+.PP
+The .gentoo directory includes an install.sh script.
+The Ebuild has to be adapted slightly such that it does not install the software version given by the sources in \f[C]SRC_URI\f[], \f[C]EGIT_REPO_URI\f[] or equivalent, but rather use the local files.
+To achieve this, the \f[C]install.sh\f[] script works in conjunction with Portage (as controlled by the Ebuild).
+In the script, an environment variable (\f[C]DOTGENTOO_PACKAGE_ROOT\f[]) is exported, and the Portage copies whatever is inside the directory specified by this variable to its working directory.
+.IP
+.nf
+\f[C]
+src_unpack() {
+        cp \-r \-L "$DOTGENTOO_PACKAGE_ROOT" "$S"
+}
+\f[]
+.fi
+.PP
+The \f[C]install.sh\f[] script additionally sets up a temporary overlay inside the .gentoo directory, builds the Ebuild manifest and executes emerge with the first Ebuild it finds under .gentoo.
+The command line arguments passed to \f[C]install.sh\f[] are forwarded to emerge.
+.PP
+The script does \f[I]not\f[] install any overlay or package mask, use, keyword or unmask file. The user is required to do that manually.
+
