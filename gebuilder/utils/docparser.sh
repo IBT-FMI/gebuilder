@@ -3,48 +3,50 @@
 declare -a env_array
 declare -a desc_array
 
-for file in $1*
+steps=1
+
+for file in "$1"/*
 do
-    if [ -f "${file}" ]; then
-        input=$file
-        
-        output_content=""
-        output=$(echo "file: \e[1m${file##*/}\e[0m\n")
+	if [ -f "${file}" ]; then
+		input="$file"
 
-        while IFS= read -r line
-        do
-            if [ "${line:0:2}" = "##" ]; then
+		output_content=""
+		output="$(printf ".IP %d.\n.IR %s :\n" ${steps} "${file#$1/}")"
 
-                if [ "${line:3:1}" = "@" ]; then
-                    env_array+=("${line:4}")    
-                else
-                    output_content+=$(echo "${line:3}\n")
-                
-                fi
-                
-            fi
-        done < "$input"
+		while IFS= read -r line
+		do
+			if [ "${line:0:2}" = "##" ]; then
 
-        if [ "${output_content}" != "" ]; then
-            output+=$(echo -e "\e[3m${output_content}\e[0m")      
-            desc_array+=("${output}")
-        fi        
-    fi
+				if [ "${line:3:1}" = "@" ]; then
+					env_array+=("${line:4}")
+				else
+					if [ -z "${line:3}" ]
+					then
+						output+=".PP\n"
+					else
+						output+="\n${line:3}"
+					fi
+				fi
+
+			fi
+		done < "$input"
+
+		desc_array+=("${output}")
+	fi
+	steps=$((steps + 1))
 done
 
-echo -e "\e[92m---------- Enviroment variables ----------\e[39m"
+echo ".SS Environment Variables"
 
 for env_var in "${env_array[@]}"
 do
-    string_array=($env_var)
-    echo -e "\e[92m\e[1m${string_array[0]}\e[0m\e[39m ${string_array[@]:1}"
+	string_array=($env_var)
+	echo -e ".TP\n.B ${string_array[0]}\n${string_array[@]:1}"
 done
 
-echo ""
+echo ".SS Steps"
 
 for desc_var in "${desc_array[@]}"
 do
-    echo -e "$desc_var"
+	echo -e "$desc_var"
 done
-
-
