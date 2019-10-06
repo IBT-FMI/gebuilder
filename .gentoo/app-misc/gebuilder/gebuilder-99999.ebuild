@@ -21,6 +21,7 @@ DEPEND="
 	sys-boot/syslinux
 	sys-fs/duperemove
 	sys-kernel/dracut
+	sys-devel/m4
 "
 RDEPEND="${DEPEND}
 	sys-process/lsof
@@ -31,23 +32,18 @@ RDEPEND="${DEPEND}
 
 src_unpack() {
 	mkdir "$S"
-	cp -r -L "$DOTGENTOO_PACKAGE_ROOT/${PN}/"* -t "$S"
+	cp -r -L "$DOTGENTOO_PACKAGE_ROOT/"* -t "$S"
+}
+
+src_compile(){
+	emake
 }
 
 src_install() {
-	insinto /usr/share/gebuilder
-	doins -r utils config
-	exeopts "-m0744"
-	exeinto /usr/bin
-	doexe gebuild
-	insopts "-m0755"
-	doins -r example_hooks exec.sh scripts
-	
+	default
 	if use autoupdate; then
 		einfo "Installing weekly cron job:"
 		insinto /etc/cron.weekly
 		doins ${FILESDIR}/gebuilder_global_update
 	fi
-
-	doman doc/{gebuild.8,dotgentoo.5}
 }
