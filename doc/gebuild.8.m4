@@ -22,7 +22,10 @@ These commands are defined in the scripts directory of the gebuilder installatio
 If gebuild is called with \fI"command"\fP as second argument, then all the scripts
 inside scripts/command/default/ (or scripts/command/stemgentoo/, if the first
 argument is "\fIstemgentoo\fP") are executed in alphabetic order.
-
+For a high-level description what these script-chains do, refer to the rest of this manual.
+.
+include(/dev/stdin)
+.
 .SH SEE ALSO
 A more extensive description of the background for this project and the .gentoo specification is laid out in the summary of the semester project during which this project was initially launched (http://chymera.eu/docs/dominik_semesterarbeit.pdf).
 Additionally, see the
