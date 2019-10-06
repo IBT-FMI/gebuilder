@@ -10,7 +10,7 @@ BUILDFILES = gebuilder/gebuild
 
 all: gebuilder/gebuild
 
-doc/gebuild.8: doc/gebuild.8.m4 $(wildcard gebuilder/scripts/**.sh) ./gebuilder/utils/docgenerator.sh
+doc/gebuild.8: doc/gebuild.8.m4 $(wildcard gebuilder/scripts/*/*.sh gebuilder/scripts/*/*/*.sh) ./gebuilder/utils/docgenerator.sh
 	./gebuilder/utils/docgenerator.sh gebuilder/scripts | m4 $< > $@
 
 gebuilder/gebuild: gebuilder/gebuild.m4 Makefile
