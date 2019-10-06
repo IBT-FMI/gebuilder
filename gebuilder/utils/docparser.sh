@@ -22,7 +22,7 @@ do
 				else
 					if [ -z "${line:3}" ]
 					then
-						output+=".PP\n"
+						output+="\n.PP"
 					else
 						output+="\n${line:3}"
 					fi
