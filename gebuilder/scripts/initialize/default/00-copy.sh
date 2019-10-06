@@ -1,5 +1,9 @@
 #!/bin/bash
 
+## Copies the stemgentoo to this images' root
+##
+## @DELETE_ON_FAIL: When variable set, delete the image if initialization fails
+
 if [ ! -d  "roots/stemgentoo/root/" ]; then
        error "Stemgentoo was not initialized"
        error exit

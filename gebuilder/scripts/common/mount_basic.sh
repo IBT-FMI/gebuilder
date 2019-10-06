@@ -1,5 +1,7 @@
 #!/bin/bash
 
+## Mount the pseudo-filesystem required for chrooting
+
 for file in dev dev/pts proc sys var/tmp/portage tmp
 do
 	on_exit "umount -R \"${ROOT}/$file\""

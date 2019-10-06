@@ -1,5 +1,10 @@
 #!/bin/bash
 
+## Update all the packages in the system
+##
+## First, update portage if there is a new one, afterwords
+## update the whole system.
+
 debug "Updating portage"
 emerge -uNqv portage
 debug "Updating system & world"

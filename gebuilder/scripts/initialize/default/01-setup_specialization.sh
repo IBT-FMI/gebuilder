@@ -1,5 +1,10 @@
 #!/bin/bash
 
+## Sets up the specialization, i.e. everything connected with the .gentoo-direcory
+##
+## This sets up an overlay containing solely the ebuild contained in the .gentoo overlay
+## and copies over the package.{accept_keywords,mask,unmask,use}-files
+
 debug "Setting up the target ebuild overlay"
 OVERLAYDIR="${ROOT}/var/buildsrv/overlay"
 ensure_dir "${OVERLAYDIR}"

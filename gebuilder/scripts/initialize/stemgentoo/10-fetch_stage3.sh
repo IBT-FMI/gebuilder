@@ -1,4 +1,10 @@
 #!/bin/bash
+
+## Fetches the stage3-file from the gentoo webpage
+##
+## Note that this fetches an amd64 image and caches it, such that we
+## do not download the same image twice
+
 set -e
 
 GENTOO_MIRROR="http://distfiles.gentoo.org/releases/amd64/autobuilds"

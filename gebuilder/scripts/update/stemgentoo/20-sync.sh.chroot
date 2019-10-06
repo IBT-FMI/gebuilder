@@ -1,3 +1,5 @@
 #!/bin/bash
 
+## Synchronize all the portage repositories
+
 emaint sync -A

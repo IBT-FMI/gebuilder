@@ -1,5 +1,7 @@
 #!/bin/bash
 
+## Set up the main portage repository to have an entry in repos.conf
+
 mkdir -p "${ROOT}/etc/portage/repos.conf"
 cat <<-EOF > "${ROOT}/etc/portage/repos.conf/gentoo"
 [DEFAULT]

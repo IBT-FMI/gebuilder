@@ -1,5 +1,7 @@
 #!/bin/bash
 
+## Update all the dependencies of the .gentoo-specific ebuild.
+
 if grep -qr science /etc/portage/repos.conf/; then
 	echo ""
 	echo "Setting Up Eselect for Gentoo Science:"
