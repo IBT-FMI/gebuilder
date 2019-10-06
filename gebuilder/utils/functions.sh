@@ -4,7 +4,10 @@
 GEBUILDER_ROOT="$(realpath "$(dirname "$0")")"
 
 #Where do we cache certain files?
-CACHE="${GEBUILDER_ROOT}/cache/"
+if [[ -z "${CACHE}" ]]
+then
+	CACHE="${GEBUILDER_ROOT}/cache/"
+fi
 
 export NUM_CPU="$(getconf _NPROCESSORS_ONLN)"
 
