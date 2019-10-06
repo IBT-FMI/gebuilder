@@ -217,7 +217,10 @@ function exec_scripts(){
 	fi
 }
 
-
+function get_portdir(){
+	echo -n "${2-$1}"
+	portageq get_repo_path "$1" gentoo
+}
 
 function ensure_dir(){
 	debug "Ensuring $1 is a directory"

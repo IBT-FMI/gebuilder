@@ -5,5 +5,9 @@
 ## This allows us to not sync the portage tree multiple times, which is
 ## considered bad behaviour
 
-mount -o bind roots/stemgentoo/root/usr/portage/ "${ROOT}"/usr/portage
-on_exit "umount '${ROOT}/usr/portage'"
+DIRA="$(get_portdir "${ROOT}")"
+DIRB="$(get_portdir "roots/stemgentoo/root/")"
+
+ensure_dir "{DIRA}"
+mount -o bind "${DIRB}" "${DIRA}"
+on_exit "umount '${DIRA}'"

@@ -9,4 +9,6 @@ for VCS in "cvs" "git" "mercurial" "subversion"; do
 		emerge dev-vcs/${VCS}
 done
 
+sed -i -e 's/auto-sync = yes/auto-sync = no/g' /etc/portage/repos.conf/gentoo
 emaint sync -a
+sed -i -e 's/auto-sync = no/auto-sync = yes/g' /etc/portage/repos.conf/gentoo
