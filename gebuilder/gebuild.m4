@@ -7,6 +7,11 @@ then
 	exit 1
 fi
 
+if [[ ! -e "IMAGESDIR" ]]
+then
+	mkdir "IMAGESDIR"
+fi
 cd "IMAGESDIR"
+
 export CACHE="CACHEDIR"
 exec "GEBUILDER_ROOT/exec.sh" "$@"
