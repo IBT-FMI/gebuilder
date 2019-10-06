@@ -9,5 +9,5 @@ main-repo = gentoo
 location = /usr/portage
 sync-type = rsync
 sync-uri = rsync://rsync.gentoo.org/gentoo-portage
-auto-sync = no
+auto-sync = yes
 EOF
