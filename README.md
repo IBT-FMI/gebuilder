@@ -16,6 +16,19 @@ cd /home/youruser/gebuilder/.gentoo
 ./install.sh
 ```
 
+## Testing
+
+The test-suite can be executed (as root) via:
+
+```
+cd gebuilder
+./tests.sh
+```
+
+Please make sure that there is sufficient disk-space (>1G) in `$TMPDIR` (or, if this is unset, in `/tmp`)
+This program will exit with status code 0, if all tests succeeded, 1, if at least one test failed and 2 on other errors.
+At the end of execution it will print to stdout the exact tests that failed
+
 ## Features
 
 ### Btrfs Support
