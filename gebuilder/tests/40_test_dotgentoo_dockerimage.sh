@@ -25,6 +25,7 @@ else
 			if [ ! "$?" -eq 0 ]
 			then
 				error "Docker image does not include gmp.h, as it should"
+				RET=1
 			fi
 		fi
 	fi
