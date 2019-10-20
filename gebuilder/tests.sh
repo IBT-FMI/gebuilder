@@ -1,5 +1,12 @@
 #!/bin/bash
 
+if [ ! "$(id -u)" -eq 0 ]
+then
+	echo "Need to be root to execute the testsuite"
+	echo "Exiting"
+	exit 2
+fi
+
 source "$(dirname "$0")/utils/functions.sh"
 
 msgs=()
