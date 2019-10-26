@@ -45,8 +45,8 @@ src_prepare(){
 }
 
 src_unpack() {
-	mkdir "$S"
-	cp -r -L "$DOTGENTOO_PACKAGE_ROOT/"* -t "$S"
+	mkdir "$S" | die "Could not create the source directory"
+	cp -r -L "$DOTGENTOO_PACKAGE_ROOT/"* -t "$S" || die "Could not copy $DOTGENTOO_PACKAGE_ROOT to $S"
 }
 
 src_compile(){

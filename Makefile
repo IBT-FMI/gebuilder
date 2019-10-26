@@ -18,7 +18,7 @@ gebuilder/gebuild: gebuilder/gebuild.m4 Makefile
 	chmod a+x $@
 
 .PHONY: install
-install: gebuilder/gebuild doc/
+install: gebuilder/gebuild doc/gebuild.8 doc/dotgentoo.5
 	cd gebuilder; find utils config -type f -exec install -D -m 0644 {} $(DESTDIR)$(GEBUILDER_ROOT)/{} \;
 	cd gebuilder; find example_hooks exec.sh scripts -type f -exec install -D -m 0755 {} $(DESTDIR)$(GEBUILDER_ROOT)/{} \;
 	$(INSTALL) -D -m 0755 -t $(DESTDIR)$(BINDIR) gebuilder/gebuild
