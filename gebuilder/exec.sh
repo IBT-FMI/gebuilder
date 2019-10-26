@@ -20,6 +20,7 @@ fi
 exec_scripts "$2" "$ID" "$MACHINETYPE"
 ok "Finished succesfully"
 trap - ERR
+set -e
 cleanup
 CHAINFILE="roots/$ID/hooks/$2/chain"
 echo "$CHAINFILE"

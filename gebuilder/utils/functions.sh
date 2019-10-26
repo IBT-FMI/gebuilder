@@ -74,6 +74,7 @@ function error_cleanup(){
 
 function cleanup(){
 	trap - ERR
+	set -e
 	debug "Cleaning up"
 	for func in "${_on_exit[@]}"
 	do
@@ -84,6 +85,7 @@ function cleanup(){
 
 function clean_exit(){
 	trap - ERR
+	set -e
 	ok "Exiting"
 	cleanup
 	exit 0
@@ -91,6 +93,7 @@ function clean_exit(){
 
 function error_exit(){
 	trap - ERR
+	set -e
 	error "Exiting"
 	cleanup
 	error_cleanup
