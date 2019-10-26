@@ -15,7 +15,7 @@
 language: python
 before_install:
   - docker pull gebuilder/gebuilder_environment
-  - docker create --name "gebuilder_environment" --rm -ti -v "${PWD}":/home/gebuilder_environment chymera/gebuilder_environment
+  - docker create --name "gebuilder_environment" --rm -ti -v "${PWD}":/home/gebuilder_environment gebuilder/gebuilder_environment
   - docker start gebuilder_environment
   # Re-emerging dependencies in not needed if the environment image is regenerated frequently (e.g. weekly)
   #- docker exec gebuilder_environment emaint sync -a
