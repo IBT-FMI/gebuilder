@@ -12,5 +12,5 @@ EBUILD="$(find "${ROOT}" -name "*.ebuild" | head -n1)"
 
 echo "Installing ebuild $EBUILD"
 
-PORTAGE_USERNAME="$USER" localexec ebuild "$EBUILD" manifest
-PORTAGE_USERNAME="$USER" localexec emerge "$@" "$EBUILD"
+PORTAGE_USERNAME="${USER-root}" localexec ebuild "$EBUILD" manifest
+PORTAGE_USERNAME="${USER-root}" localexec emerge "$@" "$EBUILD"
