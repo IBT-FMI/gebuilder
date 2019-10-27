@@ -1,11 +1,11 @@
 language: python
 before_install:
+  - cd
   - wget http://chymera.eu/distfiles/root.tar.xz
   - ls -lah /
   - ls -lah 
-  - mkdir -p mnt_gentoo
-  - tar xfJ root.tar.xz -C mnt_gentoo
-  - ls -lah mnt_gentoo
+  - mkdir -p gentoo
+  - tar -xvf root.tar.xz --exclude='root/dev/*' -C gentoo &> gentoo_extraction.log
 install:
   # Re/Install the package without tests, this is not separately needed as it is included in the script below:
   #- docker exec gebilder_environment sh -c 'FEATURES="-test" /home/gebuilder_environment/.gentoo/install.sh --autounmask-continue'
