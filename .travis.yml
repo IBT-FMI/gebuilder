@@ -1,28 +1,28 @@
-#language: python
-#before_install:
-#  - wget http://chymera.eu/distfiles/root.tar.xz
-#  - ls -lah /
-#  - ls -lah 
-#  - mkdir -p mnt_gentoo
-#  - tar xfJ root.tar.xz -C mnt_gentoo
-#  - ls -lah mnt_gentoo
-#install:
-#  # Re/Install the package without tests, this is not separately needed as it is included in the script below:
-#  #- docker exec gebilder_environment sh -c 'FEATURES="-test" /home/gebuilder_environment/.gentoo/install.sh --autounmask-continue'
-#script:
-#  # Install and run tests (this is performed separately from dependency installation so as to not propagate the test FEATURE to the entire graph):
-
 language: python
 before_install:
-  - docker pull gebuilder/gebuilder_environment
-  - docker create --name "gebuilder_environment" --rm -ti -v "${PWD}":/home/gebuilder_environment gebuilder/gebuilder_environment
-  - docker start gebuilder_environment
-  # Re-emerging dependencies in not needed if the environment image is regenerated frequently (e.g. weekly)
-  #- docker exec gebuilder_environment emaint sync -a
-  #- docker exec gebuilder sh -c '/home/gebuilder/.gentoo/install.sh -o --autounmask-continue'
+  - wget http://chymera.eu/distfiles/root.tar.xz
+  - ls -lah /
+  - ls -lah 
+  - mkdir -p mnt_gentoo
+  - tar xfJ root.tar.xz -C mnt_gentoo
+  - ls -lah mnt_gentoo
 install:
   # Re/Install the package without tests, this is not separately needed as it is included in the script below:
   #- docker exec gebilder_environment sh -c 'FEATURES="-test" /home/gebuilder_environment/.gentoo/install.sh --autounmask-continue'
 script:
   # Install and run tests (this is performed separately from dependency installation so as to not propagate the test FEATURE to the entire graph):
-  - docker exec gebuilder_environment sh -c 'FEATURES="test" /home/gebuilder_environment/.gentoo/install.sh --autounmask-continue'
+
+#language: python
+#before_install:
+#  - docker pull gebuilder/gebuilder_environment
+#  - docker create --name "gebuilder_environment" --rm -ti -v "${PWD}":/home/gebuilder_environment gebuilder/gebuilder_environment
+#  - docker start gebuilder_environment
+#  # Re-emerging dependencies in not needed if the environment image is regenerated frequently (e.g. weekly)
+#  #- docker exec gebuilder_environment emaint sync -a
+#  #- docker exec gebuilder sh -c '/home/gebuilder/.gentoo/install.sh -o --autounmask-continue'
+#install:
+#  # Re/Install the package without tests, this is not separately needed as it is included in the script below:
+#  #- docker exec gebilder_environment sh -c 'FEATURES="-test" /home/gebuilder_environment/.gentoo/install.sh --autounmask-continue'
+#script:
+#  # Install and run tests (this is performed separately from dependency installation so as to not propagate the test FEATURE to the entire graph):
+#  - docker exec gebuilder_environment sh -c 'FEATURES="test" /home/gebuilder_environment/.gentoo/install.sh --autounmask-continue'
