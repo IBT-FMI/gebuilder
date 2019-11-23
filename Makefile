@@ -1,6 +1,6 @@
 INSTALL ?= install
 PREFIX ?= /usr
-GEBUILDER_ROOT ?=$(PREFIX)/share/gebuilder/
+GEBUILDER_ROOT ?=$(PREFIX)/share/gebuilder
 MANDIR ?= $(PREFIX)/share/man
 BINDIR ?= $(PREFIX)/bin/
 CACHEDIR ?= /var/cache/gebuilder
