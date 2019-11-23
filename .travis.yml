@@ -7,12 +7,12 @@ before_install:
   - ls -lah 
   - mkdir -p gentoo
   - tar -xvf root.tar.xz --exclude='root/dev/*' -C gentoo &> gentoo_extraction.log
-  - mount --bind /dev gentoo/dev
-  - mount --bind /sys gentoo/sys
-  - mount --bind /proc gentoo/proc
+  - sudo mount --bind /dev gentoo/dev
+  - sudo mount --bind /sys gentoo/sys
+  - sudo mount --bind /proc gentoo/proc
 install:
   - mv build/IBT-FMI/gebuilder gentoo/gebuilder
-  - chroot gentoo/ /gebuilder/.gentoo/install.sh
+  - sudo chroot gentoo/ /gebuilder/.gentoo/install.sh
   # Re/Install the package without tests, this is not separately needed as it is included in the script below:
   #- docker exec gebilder_environment sh -c 'FEATURES="-test" /home/gebuilder_environment/.gentoo/install.sh --autounmask-continue'
 script:
