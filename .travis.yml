@@ -6,7 +6,7 @@ before_install:
   - ls -lah /
   - ls -lah
   - mkdir -p gentoo
-  - tar -xvf root.tar.xz --exclude='root/dev/*' -C gentoo &> gentoo_extraction.log
+  - tar -xvf root.tar.xz --exclude='dev/*' -C gentoo &> gentoo_extraction.log
   - sudo mount --bind /dev gentoo/dev
   - sudo mount --bind /sys gentoo/sys
   - sudo mount --bind /proc gentoo/proc
