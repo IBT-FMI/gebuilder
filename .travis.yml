@@ -12,6 +12,7 @@ before_install:
   - sudo mount --bind /dev gentoo/dev
   - sudo mount --bind /sys gentoo/sys
   - sudo mount --bind /proc gentoo/proc
+  - sudo chroot gentoo/ /bin/bash -c "emerge --sync"
 install:
   - mv build/IBT-FMI/gebuilder gentoo/gebuilder
   - find gentoo/gebuilder/
