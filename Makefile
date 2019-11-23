@@ -8,13 +8,15 @@ IMAGESDIR ?= /var/lib/gebuilder
 
 BUILDFILES = gebuilder/gebuild
 
+M4OPTS = -DCACHEDIR=$(CACHEDIR) -DIMAGESDIR=$(IMAGESDIR) -DPREFIX=$(PREFIX) -DGEBUILDER_ROOT=$(GEBUILDER_ROOT)
+
 all: gebuilder/gebuild
 
 doc/gebuild.8: doc/gebuild.8.m4 $(wildcard gebuilder/scripts/*/*.sh gebuilder/scripts/*/*/*.sh) ./gebuilder/utils/docgenerator.sh
-	./gebuilder/utils/docgenerator.sh gebuilder/scripts | m4 $< > $@
+	./gebuilder/utils/docgenerator.sh gebuilder/scripts | m4 $(M4OPTS) $< > $@
 
 gebuilder/gebuild: gebuilder/gebuild.m4 Makefile
-	m4 -DCACHEDIR=$(CACHEDIR) -DIMAGESDIR=$(IMAGESDIR) -DPREFIX=$(PREFIX) -DGEBUILDER_ROOT=$(GEBUILDER_ROOT) $< > $@
+	m4 $(M4OPTS) $< > $@
 	chmod a+x $@
 
 .PHONY: install
