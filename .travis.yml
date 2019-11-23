@@ -2,7 +2,7 @@ sudo: required
 before_install:
   - pwd
   - cd
-  - wget http://chymera.eu/distfiles/root.tar.xz
+  - wget http://chymera.eu/distfiles/2019-11-23.tar.xz
   - ls -lah /
   - ls -lah
   - mkdir -p gentoo
