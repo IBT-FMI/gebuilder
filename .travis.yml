@@ -1,14 +1,23 @@
-language: python
+sudo: required
 before_install:
+  - pwd
   - cd
   - wget http://chymera.eu/distfiles/root.tar.xz
   - ls -lah /
-  - ls -lah 
+  - ls -lah
   - mkdir -p gentoo
   - tar -xvf root.tar.xz --exclude='root/dev/*' -C gentoo &> gentoo_extraction.log
+  - mkdir gentoo/{dev,sys,proc}
+  - sudo mount --bind /dev gentoo/dev
+  - sudo mount --bind /sys gentoo/sys
+  - sudo mount --bind /proc gentoo/proc
 install:
-  # Re/Install the package without tests, this is not separately needed as it is included in the script below:
-  #- docker exec gebilder_environment sh -c 'FEATURES="-test" /home/gebuilder_environment/.gentoo/install.sh --autounmask-continue'
+  - mv build/IBT-FMI/gebuilder gentoo/gebuilder
+  - find gentoo/gebuilder/
+  - ls -lah
+  - pwd
+  - ls gentoo -lah
+  - sudo chroot gentoo/ /bin/bash /gebuilder/.gentoo/install.sh --autounmask-continue
 script:
   # Install and run tests (this is performed separately from dependency installation so as to not propagate the test FEATURE to the entire graph):
 

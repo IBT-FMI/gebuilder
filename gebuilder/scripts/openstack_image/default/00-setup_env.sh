@@ -1,7 +1,7 @@
 #!/bin/bash
 
 OPENSTACK_IMAGE_DIR="${ROOT}/../openstack_images/"
-OPENSTACK_IMAGE_NAME="image_$(date "+%Y%m%d")"
+OPENSTACK_IMAGE_NAME="$(date "+%Y-%m-%d")"
 ensure_dir "${OPENSTACK_IMAGE_DIR}"
 OPENSTACK_IMAGE="${OPENSTACK_IMAGE_DIR}/${OPENSTACK_IMAGE_NAME}"
 
