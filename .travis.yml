@@ -1,4 +1,5 @@
 before_install:
+  - pwd
   - cd
   - wget http://chymera.eu/distfiles/root.tar.xz
   - ls -lah /
