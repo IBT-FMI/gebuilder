@@ -14,7 +14,7 @@ before_install:
 install:
   - mv build/IBT-FMI/gebuilder gentoo/gebuilder
   - find gentoo/gebuilder/
-  - sudo chroot gentoo/ /gebuilder/.gentoo/install.sh --autounmask-continue'
+  - sudo chroot gentoo/ /gebuilder/.gentoo/install.sh --autounmask-continue
 script:
   # Install and run tests (this is performed separately from dependency installation so as to not propagate the test FEATURE to the entire graph):
 
