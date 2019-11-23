@@ -10,6 +10,7 @@ before_install:
   - mount --bind /sys gentoo/sys
   - mount --bind /proc gentoo/proc
 install:
+  - mv bin/ gentoo/
   # Re/Install the package without tests, this is not separately needed as it is included in the script below:
   #- docker exec gebilder_environment sh -c 'FEATURES="-test" /home/gebuilder_environment/.gentoo/install.sh --autounmask-continue'
 script:
