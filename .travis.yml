@@ -3,12 +3,11 @@ language: minimal
 before_install:
   - pwd
   - cd
-  - wget http://chymera.eu/distfiles/2019-11-23.tar.xz
+  - wget http://chymera.eu/distfiles/stemgentoo/2019-11-23.tar.xz
   - ls -lah /
   - ls -lah
   - mkdir -p gentoo
   - tar -xvf root.tar.xz --exclude='root/dev/*' -C gentoo &> gentoo_extraction.log
-  - mkdir gentoo/{dev,sys,proc}
   - sudo mount --bind /dev gentoo/dev
   - sudo mount --bind /sys gentoo/sys
   - sudo mount --bind /proc gentoo/proc
