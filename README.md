@@ -90,6 +90,24 @@ builder ~ # emerge btrfs-progs
 builder ~ # btrfs filesystem resize max /
 ```
 
+### Openstack Image Upload
+
+If you want to have an additional openstack image upload command, you can copy over the example hook from
+its directory, and potentially chain it to the openstack_image command.
+
+```
+cp -r gebuilder/example_hooks/openstack_image_upload/ /var/lib/gebuilder/roots/<ID>/hooks/
+mkdir /var/lib/gebuilder/roots/<ID>/hooks/openstack_image
+echo openstack_image_upload > /var/lib/gebuilder/roots/<ID>/hooks/openstack_image/chain
+```
+
+You should then edit the script inside `/var/lib/gebuilder/roots/<ID>/hooks/openstack_image_upload/` and
+set the variables in the header.
+
+Afterwords, the images will be uploaded whenever `gebuild </path/to/.gentoo|stemgentoo> openstack_image_upload`
+or `openstack_image` (when the chain is set) are called
+
+
 ## Known Issues
 
 The following list contains solutions to issues commonly encountered with gebuilder, as well as with the services it depends on.
