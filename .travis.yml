@@ -4,7 +4,7 @@ before_install:
   - cd
   - wget http://chymera.eu/distfiles/root.tar.xz
   - ls -lah /
-  - ls -lah 
+  - ls -lah
   - mkdir -p gentoo
   - tar -xvf root.tar.xz --exclude='root/dev/*' -C gentoo &> gentoo_extraction.log
   - mkdir gentoo/{dev,sys,proc}
@@ -14,7 +14,7 @@ before_install:
 install:
   - mv build/IBT-FMI/gebuilder gentoo/gebuilder
   - find gentoo/gebuilder/
-  - sudo chroot gentoo/ /gebuilder/.gentoo/install.sh --autounmask-continue
+  - sudo chroot gentoo/ /bin/bash /gebuilder/.gentoo/install.sh --autounmask-continue
 script:
   # Install and run tests (this is performed separately from dependency installation so as to not propagate the test FEATURE to the entire graph):
 
