@@ -113,8 +113,6 @@ There are two types of hooks:
 pre and post command hooks: these are additional scripts executed in a command
 .IP \[bu] 2
 command chains: these allow executing another command after one has finished
-.PP
-[IMAGE: Hooks and Command\-Chains]
 .SS
 Pre and Post Hooks
 .PP
