@@ -15,27 +15,28 @@ glance --os-username "$OS_USER" \
 
 if [ -f "${ROOT}/../registry/openstack_image" ]
 then
-	UUID="$(sed -n  's/|[[:blank:]]\+id[[:blank:]]\+|[[:blank:]]\+\([a-z0-9\-]\+\)[[:blank:]]\+|/\1/p' "${ROOT}/../registry/openstack_image")"
-	debug "Deleting old image with uuid $UUID"
-	gl image-delete "$UUID" || true
+        UUID="$(sed -n  's/|[[:blank:]]\+id[[:blank:]]\+|[[:blank:]]\+\([a-z0-9\-]\+\)[[:blank:]]\+|/\1/p' "${ROOT}/../registry/openstack_image")"
+        debug "Deleting old image with uuid $UUID"
+        gl image-delete "$UUID" || true
 else
-	ensure_dir "${ROOT}/../registry/"
+        ensure_dir "${ROOT}/../registry/"
 fi
 # Calling `cleanup` here patches https://github.com/IBT-FMI/gebuilder/issues/11
 cleanup
-debug "Uploading new image with name $OS_IMGNAME"
 regfile="${ROOT}/../registry/openstack_image"
 
 if [ -z "${OPENSTACK_IMG}" ]
 then
-	IMGS_DIR="${ROOT}/../openstack_images"
-	LATEST_IMG_BASENAME=$(ls -t ${IMGS_DIR} | head -1)
-	OPENSTACK_IMG="${IMGS_DIR}/${LATEST_IMG_BASENAME}"
+        IMGS_DIR="${ROOT}/../openstack_images"
+        LATEST_IMG_BASENAME=$(ls -t ${IMGS_DIR} | head -1)
+        OPENSTACK_IMG="${IMGS_DIR}/${LATEST_IMG_BASENAME}"
 fi
 
 LATEST_IMG=$(basename "${OPENSTACK_IMG}")
 OS_IMGNAME="${OS_IMG_BASENAME}-${LATEST_IMG}"
+debug "Uploading new image with name $OS_IMGNAME"
 gl image-create --disk-format raw --container-format bare --name "$OS_IMGNAME" --file "$OPENSTACK_IMG" \
-	>"${regfile}.tmp"\
-	&& mv "${regfile}.tmp" "${regfile}"\
-	|| (rm "${regfile}.tmp"; false)
+        >"${regfile}.tmp"\
+        && mv "${regfile}.tmp" "${regfile}"\
+        || (rm "${regfile}.tmp"; false)
+
