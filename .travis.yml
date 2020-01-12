@@ -11,6 +11,7 @@ before_install:
   - sudo mount --bind /sys gentoo/sys
   - sudo mount --bind /proc gentoo/proc
   - sudo chroot gentoo/ /bin/bash -c "emerge --quiet --sync"
+  - sudo chroot gentoo/ /bin/bash -c "echo export LANG='C.utf8' >> /etc/profile.env; env-update"
   - sudo env -i PATH="$PATH" chroot gentoo/ /bin/bash -c "emerge -1q portage"
 install:
   - mv build/IBT-FMI/gebuilder gentoo/gebuilder
