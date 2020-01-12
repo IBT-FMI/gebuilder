@@ -18,9 +18,9 @@ install:
   - ls -lah
   - pwd
   - ls gentoo -lah
-  - sudo env -i PATH="$PATH" chroot gentoo/ /bin/bash /gebuilder/.gentoo/install.sh --autounmask-continue=y --autounmask=y
+  - sudo env -i PATH="$PATH" chroot gentoo/ /bin/bash -c "/gebuilder/.gentoo/install.sh --autounmask-continue=y --autounmask=y"
 script:
-  - sudo env -i PATH="$PATH" chroot gentoo/ /bin/bash FEATUERS="test" /gebuilder/.gentoo/install.sh --autounmask-continue=y --autounmask=y
+  - sudo env -i PATH="$PATH" chroot gentoo/ /bin/bash -c "FEATUERS=\"test\" /gebuilder/.gentoo/install.sh --autounmask-continue=y --autounmask=y"
 
 #language: python
 #before_install:
