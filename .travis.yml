@@ -18,9 +18,9 @@ install:
   - ls -lah
   - pwd
   - ls gentoo -lah
-  - sudo env -i PATH="$PATH" chroot gentoo/ /bin/bash /gebuilder/.gentoo/install.sh --autounmask-continue=y
+  - sudo env -i PATH="$PATH" chroot gentoo/ /bin/bash /gebuilder/.gentoo/install.sh --autounmask-continue=y --autounmask=y
 script:
-  # Install and run tests (this is performed separately from dependency installation so as to not propagate the test FEATURE to the entire graph):
+  - sudo env -i PATH="$PATH" chroot gentoo/ /bin/bash FEATUERS="test" /gebuilder/.gentoo/install.sh --autounmask-continue=y --autounmask=y
 
 #language: python
 #before_install:
