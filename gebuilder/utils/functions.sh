@@ -228,6 +228,11 @@ function get_portdir(){
 	portageq get_repo_path "$1" gentoo
 }
 
+function get_distdir(){
+	echo -n "${2-$1}"
+	sed -n 's/DISTDIR="\([^"]\+\)"/\1/p' "$1"/etc/portage/make.conf
+}
+
 function ensure_dir(){
 	debug "Ensuring $1 is a directory"
 	if [ ! -e "$1" ]
