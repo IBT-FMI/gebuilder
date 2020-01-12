@@ -13,7 +13,7 @@ before_install:
   - sudo mount --bind /sys gentoo/sys
   - sudo mount --bind /proc gentoo/proc
   - sudo chroot gentoo/ /bin/bash -c "emerge --sync"
-  - sudo env -i /bin/chroot gentoo/ /bin/bash -c "emerge -1v portage"
+  - sudo env -i PATH="$PATH" chroot gentoo/ /bin/bash -c "emerge -1v portage"
 install:
   - mv build/IBT-FMI/gebuilder gentoo/gebuilder
   - find gentoo/gebuilder/
