@@ -18,7 +18,7 @@ install:
   - ls -lah
   - pwd
   - ls gentoo -lah
-  - sudo chroot gentoo/ /bin/bash /gebuilder/.gentoo/install.sh --autounmask-continue
+  - sudo env -i PATH="$PATH" chroot gentoo/ /bin/bash /gebuilder/.gentoo/install.sh --autounmask-continue=y
 script:
   # Install and run tests (this is performed separately from dependency installation so as to not propagate the test FEATURE to the entire graph):
 
