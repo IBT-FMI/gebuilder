@@ -5,7 +5,7 @@ OPENSTACK_IMAGE_NAME="$(date "+%Y-%m-%d")"
 ensure_dir "${OPENSTACK_IMAGE_DIR}"
 OPENSTACK_IMAGE="${OPENSTACK_IMAGE_DIR}/${OPENSTACK_IMAGE_NAME}"
 
-export OPENSTACK_PKGS="gentoo-sources dropbear syslog-ng cloud-init dhcpcd"
+export OPENSTACK_PKGS="gentoo-sources openssh syslog-ng cloud-init dhcpcd"
 
 debug "Calculating disk usage..."
 ROOT_SIZE="$(du -csb "${ROOT}" | awk '/total$/{print $1}')"
