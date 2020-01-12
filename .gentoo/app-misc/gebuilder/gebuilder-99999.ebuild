@@ -12,6 +12,8 @@ SLOT="0"
 KEYWORDS=""
 IUSE="autoupdate btrfs docker openstack test"
 
+RESTRICT="network-sandbox"
+
 COMMON_DEPEND="
 	>=app-shells/bash-4.2:*
 	net-misc/rsync
