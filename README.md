@@ -52,7 +52,7 @@ OPENSTACK_FILESYSTEM="btrfs"
 
 #Syslinux can't handle 64bit, so we disable it.
 #This has the effect, that our root partition can't grow larger than 2TB
-OPENSTACK_FILESYSTEM_OPTS=""
+OPENSTACK_FILESYSTEM_OPTS="-O ^64bit"
 ```
 
 And create it - as usually - with:
