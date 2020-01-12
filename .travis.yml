@@ -11,6 +11,7 @@ before_install:
   - sudo mount --bind /sys gentoo/sys
   - sudo mount --bind /proc gentoo/proc
   - sudo chroot gentoo/ /bin/bash -c "emerge --quiet --sync"
+  - sudo chroot gentoo/ /bin/bash -c "echo export LANG='C.utf8' >> /etc/profile.env; env-update"
   - sudo env -i PATH="$PATH" chroot gentoo/ /bin/bash -c "emerge -1q portage"
 install:
   - mv build/IBT-FMI/gebuilder gentoo/gebuilder
@@ -18,9 +19,9 @@ install:
   - ls -lah
   - pwd
   - ls gentoo -lah
-  - sudo env -i PATH="$PATH" chroot gentoo/ /bin/bash /gebuilder/.gentoo/install.sh --autounmask-continue=y
+  - sudo env -i PATH="$PATH" chroot gentoo/ /bin/bash -c "/gebuilder/.gentoo/install.sh --autounmask-continue=y --autounmask=y --quiet"
 script:
-  # Install and run tests (this is performed separately from dependency installation so as to not propagate the test FEATURE to the entire graph):
+  - sudo env -i PATH="$PATH" chroot gentoo/ /bin/bash -c "FEATURES=\"test\" /gebuilder/.gentoo/install.sh --autounmask-continue=y --autounmask=y --quiet"
 
 #language: python
 #before_install:
