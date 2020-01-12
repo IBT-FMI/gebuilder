@@ -39,10 +39,10 @@ Gebuilder makes this particularly accessible, by optionally building Btrfs-forma
 To select Btrfs as the format for e.g. an OpenStack image, run:
 
 ```
-cp /usr/share/gebuilder/config/openstack.conf /usr/share/gebuilder/roots/<ID>/config/openstack.conf
+cp /usr/share/gebuilder/config/openstack.conf /var/lib/gebuilder/roots/<ID>/config/openstack.conf
 ```
 
-Edit `/usr/share/gebuilder/roots/<ID>/config/openstack.conf` to contain:
+Edit `/var/lib/gebuilder/roots/<ID>/config/openstack.conf` to contain:
 
 ```
 OS_IMGNAME="stemgentoo_btrfs"
