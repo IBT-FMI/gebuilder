@@ -96,7 +96,7 @@ If you want to have an additional openstack image upload command, you can copy o
 its directory, and potentially chain it to the openstack_image command.
 
 ```
-cp -r gebuilder/example_hooks/openstack_image_upload/ /var/lib/gebuilder/roots/<ID>/hooks/
+cp -r /usr/share/gebuilder/example_hooks/openstack_image_upload/ /var/lib/gebuilder/roots/<ID>/hooks/
 mkdir /var/lib/gebuilder/roots/<ID>/hooks/openstack_image
 echo openstack_image_upload > /var/lib/gebuilder/roots/<ID>/hooks/openstack_image/chain
 ```
