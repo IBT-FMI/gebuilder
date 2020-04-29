@@ -99,6 +99,8 @@ The following directories are searched for \f[C].conf\f[] files.
 .IP \[bu] 2
 \f[C]IMAGESDIR/roots/<ID>/config/\f[]
 .SS
+You can copy example configuration files from the default \f[C]GEBUILDER_ROOT/config/\f[] location to \f[C]IMAGESDIR/roots/<ID>/config/\f[] to customize settings for specific systems.
+
 Chroot\-configuration
 .PP
 If you want to use these configuration parameters inside a chrootet script,
