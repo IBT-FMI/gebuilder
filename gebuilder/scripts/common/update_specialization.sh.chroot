@@ -43,4 +43,4 @@ EOF
 
 fi
 
-emerge --autounmask-continue=y --with-bdeps=y -uNDqov buildserver-specialization/specialization
+emerge --autounmask --autounmask-continue=y --with-bdeps=y -uNDqov buildserver-specialization/specialization
