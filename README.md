@@ -39,10 +39,10 @@ Gebuilder makes this particularly accessible, by optionally building Btrfs-forma
 To select Btrfs as the format for e.g. an OpenStack image, run:
 
 ```
-cp /usr/share/gebuilder/config/openstack.conf /usr/share/gebuilder/roots/<ID>/config/openstack.conf
+cp /usr/share/gebuilder/config/openstack.conf /var/lib/gebuilder/roots/<ID>/config/openstack.conf
 ```
 
-Edit `/usr/share/gebuilder/roots/<ID>/config/openstack.conf` to contain:
+Edit `/var/lib/gebuilder/roots/<ID>/config/openstack.conf` to contain:
 
 ```
 OS_IMGNAME="stemgentoo_btrfs"
@@ -52,7 +52,7 @@ OPENSTACK_FILESYSTEM="btrfs"
 
 #Syslinux can't handle 64bit, so we disable it.
 #This has the effect, that our root partition can't grow larger than 2TB
-OPENSTACK_FILESYSTEM_OPTS=""
+OPENSTACK_FILESYSTEM_OPTS="-O ^64bit"
 ```
 
 And create it - as usually - with:
@@ -96,7 +96,7 @@ If you want to have an additional openstack image upload command, you can copy o
 its directory, and potentially chain it to the openstack_image command.
 
 ```
-cp -r gebuilder/example_hooks/openstack_image_upload/ /var/lib/gebuilder/roots/<ID>/hooks/
+cp -r /usr/share/gebuilder/example_hooks/openstack_image_upload/ /var/lib/gebuilder/roots/<ID>/hooks/
 mkdir /var/lib/gebuilder/roots/<ID>/hooks/openstack_image
 echo openstack_image_upload > /var/lib/gebuilder/roots/<ID>/hooks/openstack_image/chain
 ```

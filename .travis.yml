@@ -4,25 +4,24 @@ before_install:
   - pwd
   - cd
   - wget http://chymera.eu/distfiles/stemgentoo/2019-11-23.tar.xz
-  - ls -lah /
-  - ls -lah
   - mkdir -p gentoo
-  - tar -xvf 2019-11-23.tar.xz --exclude='dev/*' -C gentoo &> gentoo_extraction.log
+  - tar -xf 2019-11-23.tar.xz --exclude='dev/*' -C gentoo &> gentoo_extraction.log
   - cp -L /etc/resolv.conf gentoo/etc/
   - sudo mount --bind /dev gentoo/dev
   - sudo mount --bind /sys gentoo/sys
   - sudo mount --bind /proc gentoo/proc
-  - sudo chroot gentoo/ /bin/bash -c "emerge --sync"
-  - sudo chroot gentoo/ /bin/bash -c "emerge -1v portage"
+  - sudo chroot gentoo/ /bin/bash -c "emerge --quiet --sync"
+  - sudo chroot gentoo/ /bin/bash -c "echo \"C.UTF-8 UTF-8\" >> /etc/locale.gen && locale-gen && echo \"export LANG='C.utf8'\" >> /etc/profile.env && env-update"
+  - sudo env -i PATH="$PATH" chroot gentoo/ /bin/bash -c "emerge -1q portage"
 install:
   - mv build/IBT-FMI/gebuilder gentoo/gebuilder
   - find gentoo/gebuilder/
   - ls -lah
   - pwd
   - ls gentoo -lah
-  - sudo chroot gentoo/ /bin/bash /gebuilder/.gentoo/install.sh --autounmask-continue
+  - sudo env -i PATH="$PATH" chroot gentoo/ /bin/bash -c "/gebuilder/.gentoo/install.sh --autounmask-continue=y --autounmask=y --quiet"
 script:
-  # Install and run tests (this is performed separately from dependency installation so as to not propagate the test FEATURE to the entire graph):
+  - sudo env -i PATH="$PATH" chroot gentoo/ /bin/bash -c "FEATURES=\"test\" /gebuilder/.gentoo/install.sh --autounmask-continue=y --autounmask=y --quiet"
 
 #language: python
 #before_install:

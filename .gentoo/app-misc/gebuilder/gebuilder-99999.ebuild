@@ -1,4 +1,4 @@
-# Copyright 1999-2019 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -11,6 +11,8 @@ LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS=""
 IUSE="autoupdate btrfs docker openstack test"
+
+RESTRICT="network-sandbox"
 
 COMMON_DEPEND="
 	>=app-shells/bash-4.2:*
@@ -45,7 +47,7 @@ src_prepare(){
 }
 
 src_unpack() {
-	mkdir "$S" | die "Could not create the source directory"
+	mkdir "$S" || die "Could not create the source directory"
 	cp -r -L "$DOTGENTOO_PACKAGE_ROOT/"* -t "$S" || die "Could not copy $DOTGENTOO_PACKAGE_ROOT to $S"
 }
 
