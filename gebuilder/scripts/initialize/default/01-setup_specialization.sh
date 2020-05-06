@@ -15,20 +15,25 @@ then
 	error_exit
 fi
 
+IFS='/' read -r -a DIRELS <<< "$EBUILD"
+FNAME="${DIRELS[-1]}"
+PKG="${DIRELS[-2]}"
+CAT="${DIRELS[-3]}"
+
 debug "Using ebuild $EBUILD"
 debug "Setting up buildserver-overlay in ${OVERLAYDIR}"
 ensure_dir "${OVERLAYDIR}"
 ensure_dir "${OVERLAYDIR}/profiles"
 ensure_dir "${OVERLAYDIR}/metadata"
-ensure_dir "${OVERLAYDIR}/buildserver-specialization"
-ensure_dir "${OVERLAYDIR}/buildserver-specialization/specialization/"
+ensure_dir "${OVERLAYDIR}/${CAT}"
+ensure_dir "${OVERLAYDIR}/${CAT}/${PKG}"
 cat >>${OVERLAYDIR}/metadata/layout.conf <<-EOF
 masters = gentoo
 EOF
 echo buildserver-specialization >> "${OVERLAYDIR}/profiles/categories"
 echo buildserver-specialization >> "${OVERLAYDIR}/profiles/repo_name"
-cp "${EBUILD}" "${OVERLAYDIR}/buildserver-specialization/specialization/specialization-9999.ebuild"
-PORTAGE_USERNAME=root PORTAGE_GRPNAME=root ebuild "${OVERLAYDIR}/buildserver-specialization/specialization/specialization-9999.ebuild" manifest
+cp "${EBUILD}" "${OVERLAYDIR}/${CAT}/${PKG}/${FNAME}"
+PORTAGE_USERNAME=root PORTAGE_GRPNAME=root ebuild "${OVERLAYDIR}/${CAT}/${PKG}/${FNAME}" manifest
 
 debug "Setting up the additional repos"
 ensure_dir "${ROOT}/etc/portage/repos.conf"
@@ -47,6 +52,8 @@ masters = gentoo
 location = /var/buildsrv/overlay
 EOF
 
+ensure_dir "${ROOT}"/etc/portage/sets
+echo "${CAT}/${PKG}::buildserver-specialization" > "${ROOT}"/etc/portage/sets/buildserver-specialization
 for dir in package.{accept_keywords,mask,unmask,use}
 do
 	file="${ROOT}/../.gentoo/${dir}"
