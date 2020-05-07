@@ -1,0 +1,7 @@
+#!/bin/bash
+
+STAGE4_IMGS_DIR="${ROOT}/../stage4_images"
+STAGE4_IMG_NAME=$(ls -t ${STAGE4_IMGS_DIR} | head -1)
+STAGE4_IMG_PATH="${STAGE4_IMGS_DIR}/${STAGE4_IMG_NAME}"
+
+rsync -avP "${STAGE4_IMG_PATH}" "${STAGE4_HOST}":"${STAGE4_PATH_ON_HOST}"/"${STAGE4_IMG_NAME}"
