@@ -1,11 +1,9 @@
 sudo: required
 language: minimal
 before_install:
-  - pwd
-  - cd
-  - wget http://chymera.eu/distfiles/stemgentoo/2019-11-23.tar.xz
+  - wget http://chymera.eu/gebuilder/gebuilder.tar.xz
   - mkdir -p gentoo
-  - tar -xf 2019-11-23.tar.xz --exclude='dev/*' -C gentoo &> gentoo_extraction.log
+  - tar -xf gebuilder.tar.xz --exclude='dev/*' -C gentoo &> gentoo_extraction.log
   - cp -L /etc/resolv.conf gentoo/etc/
   - sudo mount --bind /dev gentoo/dev
   - sudo mount --bind /sys gentoo/sys
