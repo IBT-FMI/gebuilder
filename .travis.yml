@@ -1,9 +1,15 @@
 sudo: required
 language: minimal
 before_install:
+  - cd
   - wget http://chymera.eu/gebuilder/gebuilder.tar.xz
   - mkdir -p gentoo
   - tar -xf gebuilder.tar.xz --exclude='dev/*' -C gentoo &> gentoo_extraction.log
+  - ls -lah
+  - pwd
+  - find -name "*gebuilder*"
+  - mv build/IBT-FMI/gebuilder gentoo/gebuilder
+  - ls gentoo -lah
   - cp -L /etc/resolv.conf gentoo/etc/
   - sudo mount --bind /dev gentoo/dev
   - sudo mount --bind /sys gentoo/sys
@@ -12,11 +18,6 @@ before_install:
   - sudo chroot gentoo/ /bin/bash -c "echo \"C.UTF-8 UTF-8\" >> /etc/locale.gen && locale-gen && echo \"export LANG='C.utf8'\" >> /etc/profile.env && env-update"
   - sudo env -i PATH="$PATH" chroot gentoo/ /bin/bash -c "emerge -1q portage"
 install:
-  - mv build/IBT-FMI/gebuilder gentoo/gebuilder
-  - find gentoo/gebuilder/
-  - ls -lah
-  - pwd
-  - ls gentoo -lah
   - sudo env -i PATH="$PATH" chroot gentoo/ /bin/bash -c "/gebuilder/.gentoo/install.sh --autounmask-continue=y --autounmask=y --quiet"
 script:
   - sudo env -i PATH="$PATH" chroot gentoo/ /bin/bash -c "FEATURES=\"test\" /gebuilder/.gentoo/install.sh --autounmask-continue=y --autounmask=y --quiet"
