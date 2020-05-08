@@ -1,3 +1,5 @@
+[![TravisCI Build Status](https://travis-ci.org/IBT-FMI/gebuilder.svg?branch=master)](https://travis-ci.org/IBT-FMI/gebuilder)
+
 # GeBuilder
 
 GeBuilder is a Gentoo system and image builder which can produce system tarballs, OpenStack Images, and Docker containers based on the `.gentoo` live package distribution standard.
