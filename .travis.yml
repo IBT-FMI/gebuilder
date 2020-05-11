@@ -19,6 +19,8 @@ before_install:
   - sudo env -i PATH="$PATH" chroot gentoo/ /bin/bash -c "emerge -v1 portage"
   - sudo env -i PATH="$PATH" chroot gentoo/ /bin/bash -c "emerge -1q gentoolkit"
   - sudo env -i PATH="$PATH" chroot gentoo/ /bin/bash -c "eselect python list"
+  - sudo env -i PATH="$PATH" chroot gentoo/ /bin/bash -c "eselect python set 3"
+  - sudo env -i PATH="$PATH" chroot gentoo/ /bin/bash -c "eselect python list"
 install:
   - sudo env -i PATH="$PATH" chroot gentoo/ /bin/bash -c "/gebuilder/.gentoo/install.sh --autounmask-continue=y --autounmask=y --quiet"
 script:
