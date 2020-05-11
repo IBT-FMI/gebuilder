@@ -65,6 +65,7 @@ src_install() {
 }
 
 src_test() {
+	ls -lah /var/db/repos/gentoo
 	TMPDIR="${WORKDIR}/test_results"
 	mkdir ${TMPDIR}
 	cd gebuilder
