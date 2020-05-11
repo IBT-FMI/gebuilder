@@ -16,9 +16,9 @@ before_install:
   - sudo mount --bind /proc gentoo/proc
   - sudo chroot gentoo/ /bin/bash -c "emerge --quiet --sync"
   - sudo chroot gentoo/ /bin/bash -c "echo \"C.UTF-8 UTF-8\" >> /etc/locale.gen && locale-gen && echo \"export LANG='C.utf8'\" >> /etc/profile.env && env-update"
-  - sudo env -i PATH="$PATH" chroot gentoo/ /bin/bash -c "emerge -1q portage"
+  - sudo env -i PATH="$PATH" chroot gentoo/ /bin/bash -c "emerge -v1 portage"
   - sudo env -i PATH="$PATH" chroot gentoo/ /bin/bash -c "emerge -1q gentoolkit"
-  - sudo env -i PATH="$PATH" chroot gentoo/ /bin/bash -c "equery f portage"
+  - sudo env -i PATH="$PATH" chroot gentoo/ /bin/bash -c "eselect python list"
 install:
   - sudo env -i PATH="$PATH" chroot gentoo/ /bin/bash -c "/gebuilder/.gentoo/install.sh --autounmask-continue=y --autounmask=y --quiet"
 script:
