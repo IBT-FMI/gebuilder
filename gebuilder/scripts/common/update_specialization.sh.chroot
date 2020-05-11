@@ -2,45 +2,45 @@
 
 ## Update all the dependencies of the .gentoo-specific ebuild.
 
-if grep -qr science /etc/portage/repos.conf/; then
-	echo ""
-	echo "Setting Up Eselect for Gentoo Science:"
-	echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-	cat <<-EOF >> "${EPREFIX}/etc/portage/package.mask/sci-lapack"
-
-## mask packages superseded by science overlay
-app-admin/eselect::gentoo
-app-eselect/eselect-blas
-app-eselect/eselect-cblas
-app-eselect/eselect-lapack
-virtual/blas::gentoo
-virtual/cblas::gentoo
-virtual/lapack::gentoo
-sci-libs/gsl::gentoo
-app-doc/blas-docs::gentoo
-app-doc/lapack-docs::gentoo
-sci-libs/blas-reference::gentoo
-sci-libs/cblas-reference::gentoo
-sci-libs/lapack-reference::gentoo
-sci-libs/mkl::gentoo
-EOF
-	emerge -v eix
-	eix-update
-
-	emerge -1v --autounmask-continue app-admin/eselect::science
-	FEATURES="-preserve-libs":$FEATURES emerge -1v --autounmask-continue=y sci-libs/blas-reference::science
-	eselect blas set reference
-	FEATURES="-preserve-libs":$FEATURES emerge -1v --autounmask-continue=y sci-libs/cblas-reference::science
-	eselect cblas set gsl
-	FEATURES="-preserve-libs":$FEATURES emerge -1v --autounmask-continue=y sci-libs/lapack-reference::science
-	eselect lapack set reference
-	FEATURES="-preserve-libs":$FEATURES emerge --autounmask-continue=y -1v --exclude sci-libs/blas-reference --exclude sci-libs/cblas-reference --exclude sci-libs/lapack-reference `eix --only-names --installed --in-overlay science`
-
-	# This needs to be done in order to circumvent a (dependency-contingent) motif compilation bug requiring flex recompilation:
-	# https://forums.gentoo.org/viewtopic-t-1079106-highlight-motif.html
-	emerge -v1 sys-devel/flex
-	emerge -1qv --autounmask-continue @preserved-rebuild
-
-fi
+#if grep -qr science /etc/portage/repos.conf/; then
+#	echo ""
+#	echo "Setting Up Eselect for Gentoo Science:"
+#	echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+#	cat <<-EOF >> "${EPREFIX}/etc/portage/package.mask/sci-lapack"
+#
+### mask packages superseded by science overlay
+#app-admin/eselect::gentoo
+#app-eselect/eselect-blas
+#app-eselect/eselect-cblas
+#app-eselect/eselect-lapack
+#virtual/blas::gentoo
+#virtual/cblas::gentoo
+#virtual/lapack::gentoo
+#sci-libs/gsl::gentoo
+#app-doc/blas-docs::gentoo
+#app-doc/lapack-docs::gentoo
+#sci-libs/blas-reference::gentoo
+#sci-libs/cblas-reference::gentoo
+#sci-libs/lapack-reference::gentoo
+#sci-libs/mkl::gentoo
+#EOF
+#	emerge -v eix
+#	eix-update
+#
+#	emerge -1v --autounmask-continue app-admin/eselect::science
+#	FEATURES="-preserve-libs":$FEATURES emerge -1v --autounmask-continue=y sci-libs/blas-reference::science
+#	eselect blas set reference
+#	FEATURES="-preserve-libs":$FEATURES emerge -1v --autounmask-continue=y sci-libs/cblas-reference::science
+#	eselect cblas set gsl
+#	FEATURES="-preserve-libs":$FEATURES emerge -1v --autounmask-continue=y sci-libs/lapack-reference::science
+#	eselect lapack set reference
+#	FEATURES="-preserve-libs":$FEATURES emerge --autounmask-continue=y -1v --exclude sci-libs/blas-reference --exclude sci-libs/cblas-reference --exclude sci-libs/lapack-reference `eix --only-names --installed --in-overlay science`
+#
+#	# This needs to be done in order to circumvent a (dependency-contingent) motif compilation bug requiring flex recompilation:
+#	# https://forums.gentoo.org/viewtopic-t-1079106-highlight-motif.html
+#	emerge -v1 sys-devel/flex
+#	emerge -1qv --autounmask-continue @preserved-rebuild
+#
+#fi
 
 emerge --autounmask --autounmask-continue=y --with-bdeps=y -uNDqov @buildserver-specialization
