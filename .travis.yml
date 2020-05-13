@@ -10,13 +10,14 @@ before_install:
   - sudo mount --bind /dev gentoo/dev
   - sudo mount --bind /sys gentoo/sys
   - sudo mount --bind /proc gentoo/proc
-  - sudo env -i PATH="$PATH" chroot gentoo/ /bin/bash -c "echo python3.7 > python-exec.conf"
+  - sudo env -i PATH="$PATH" chroot gentoo/ /bin/bash -c "echo python3.7 > /etc/python-exec/python-exec.conf"
   - sudo chroot gentoo/ /bin/bash -c "emerge --quiet --sync"
   - sudo chroot gentoo/ /bin/bash -c "echo \"C.UTF-8 UTF-8\" >> /etc/locale.gen && locale-gen && echo \"export LANG='C.utf8'\" >> /etc/profile.env && env-update"
   - sudo env -i PATH="$PATH" chroot gentoo/ /bin/bash -c "emerge -1q portage"
 install:
   - sudo env -i PATH="$PATH" chroot gentoo/ /bin/bash -c "/gebuilder/.gentoo/install.sh --autounmask-continue=y --autounmask=y --quiet"
 script:
+  - sudo chroot gentoo/ /bin/bash -c "eselect python list"
   - travis_wait 30 sudo env -i PATH="$PATH" chroot gentoo/ /bin/bash -c "FEATURES=\"test -sandbox -network-sandbox -mount-sandbox -pid-sandbox -usersandbox -ipc-sandbox\" /gebuilder/.gentoo/install.sh --autounmask-continue=y --autounmask=y"
 
 #language: python
