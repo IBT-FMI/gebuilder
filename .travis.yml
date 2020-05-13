@@ -17,7 +17,7 @@ before_install:
 install:
   - sudo env -i PATH="$PATH" chroot gentoo/ /bin/bash -c "/gebuilder/.gentoo/install.sh --autounmask-continue=y --autounmask=y --quiet"
 script:
-  - sudo env -i PATH="$PATH" chroot gentoo/ /bin/bash -c "FEATURES=\"test -sandbox -network-sandbox -mount-sandbox -pid-sandbox -usersandbox -ipc-sandbox\" /gebuilder/.gentoo/install.sh --autounmask-continue=y --autounmask=y --quiet"
+  - sudo env -i PATH="$PATH" chroot gentoo/ /bin/bash -c "FEATURES=\"test -sandbox -network-sandbox -mount-sandbox -pid-sandbox -usersandbox -ipc-sandbox\" /gebuilder/.gentoo/install.sh --autounmask-continue=y --autounmask=y"
 
 #language: python
 #before_install:
