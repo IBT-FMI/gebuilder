@@ -3,4 +3,5 @@
 ## Sync the main portage tree
 
 debug "Syncing portage tree"
-emaint sync -a
+echo "	Executing \'emaint sync -a\' in the background."
+emaint sync -a &> /dev/null
