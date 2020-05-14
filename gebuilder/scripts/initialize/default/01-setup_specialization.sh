@@ -54,7 +54,7 @@ EOF
 
 ensure_dir "${ROOT}"/etc/portage/sets
 echo "${CAT}/${PKG}::buildserver-specialization" > "${ROOT}"/etc/portage/sets/buildserver-specialization
-for dir in package.{accept_keywords,mask,unmask,use}
+for dir in package.{accept_keywords,license,mask,unmask,use}
 do
 	file="${ROOT}/../.gentoo/${dir}"
         if [ -f "$file" ]
