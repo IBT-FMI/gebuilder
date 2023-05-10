@@ -21,5 +21,4 @@ mkdir -p var/tmp/portage
 mount -t tmpfs -o size=16G none var/tmp/portage
 debug "mounting tmpfs on /tmp/"
 mount -t tmpfs -o size=1G none tmp
-cp /etc/resolv.conf etc
 popd
