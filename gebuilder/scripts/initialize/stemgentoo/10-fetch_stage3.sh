@@ -8,9 +8,10 @@
 set -e
 
 GENTOO_MIRROR="http://distfiles.gentoo.org/releases/amd64/autobuilds"
+GENTOO_IMAGE_TEXTFILE="latest-stage3-amd64-openrc.txt"
 
 debug "Fetching the newest gentoo stage3 url"
-file="$(curl "${GENTOO_MIRROR}/latest-stage3-amd64.txt" | sed -n 's/\(\+*\.tar\.xz\).*/\1/p')"
+file="$(curl "${GENTOO_MIRROR}/${GENTOO_IMAGE_TEXTFILE}" | sed -n 's/\(\+*\.tar\.xz\).*/\1/p')"
 filename="${file##*/}"
 cachefile="${CACHE}/$filename"
 debug "it is ${file}, downloading ${GENTOO_MIRROR}/${file} -> ${filename}:"
