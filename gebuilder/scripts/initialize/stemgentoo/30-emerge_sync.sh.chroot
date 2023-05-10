@@ -4,4 +4,7 @@
 
 debug "Syncing portage tree"
 echo "	Running \"emaint sync -a\" in the background."
-emaint sync -a &> /dev/null
+# emaint sync -a &> /dev/null
+# The command below will generate a lot of output, but without capturing it, sync failures are difficult to debug.
+emaint sync -a
+
